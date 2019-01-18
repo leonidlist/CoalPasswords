@@ -10,6 +10,27 @@
         Title="Login" Height="550" Width="350"
         FontFamily="Lato"
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+    <Window.Resources>
+        <ControlTemplate x:Key="passwordbox" TargetType="{x:Type PasswordBox}">
+            <Border Background="{TemplateBinding Background}" 
+        x:Name="Bd" BorderBrush="#FFE6DDDD"
+        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </Border>
+            <!--<ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>-->
+        </ControlTemplate>
+    </Window.Resources>
     <Border CornerRadius="5">
         <Border.DataContext>
             <local:Data></local:Data>
@@ -45,7 +66,7 @@
                     </Button.Content>
                 </Button>
             </Grid>
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" Name="UserLoginPanel">
                 <materialDesign:Card Height="350" Padding="32" Margin="20" VerticalAlignment="Center">
                     <materialDesign:Card.Background>
                         <LinearGradientBrush>
@@ -63,16 +84,35 @@
                             </TextBox.Resources>
                         </TextBox>
                         <Label Foreground="White" FontFamily="Lato" FontSize="14" Margin="15 0">Password:</Label>
-                        <TextBox Text="{Binding EnteredPassword}" Background="White" FontFamily="Lato" Height="30" Foreground="Black" FontSize="14" Margin="15 5 15 15" BorderThickness="0" Padding="5">
-                            <TextBox.Resources>
+                        <PasswordBox Template="{StaticResource passwordbox}" Name="PasswordField" Background="White" FontFamily="Lato" Height="30" Foreground="Black" FontSize="14" Margin="15 5 15 15" BorderThickness="0" Padding="5"></PasswordBox>
+                        <Button Command="{Binding SignIn}" CommandParameter="{Binding ElementName=PasswordField}" Margin="20" FontFamily="Lato" Content="Sign In" Background="White" Padding="0,10" Width="100" FontSize="18" Cursor="Hand" BorderThickness="0">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="3" Opacity="0.3" Direction="270"></DropShadowEffect>
+                            </Button.Effect>
+                            <Button.Foreground>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#f093fb" Offset="0.2"></GradientStop>
+                                    <GradientStop Color="#f5576c" Offset="0.8"></GradientStop>
+                                </LinearGradientBrush>
+                            </Button.Foreground>
+                            <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="3"/>
+                                    <Setter Property="CornerRadius" Value="3"></Setter>
                                 </Style>
-                            </TextBox.Resources>
-                        </TextBox>
+                            </Button.Resources>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Green"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </StackPanel>
                 </materialDesign:Card>
-                <Button Command="{Binding AddUser}" Margin="20" FontFamily="Lato" Content="Log In" Foreground="White" Padding="5,15" FontSize="18" Cursor="Hand" BorderThickness="0">
+                <Button Command="{Binding AddUser}" CommandParameter="{Binding ElementName=PasswordField}" Margin="20" FontFamily="Lato" Content="Sign Up" Foreground="White" Padding="5,15" FontSize="18" Cursor="Hand" BorderThickness="0">
                     <Button.Background>
                         <LinearGradientBrush>
                             <GradientStop Color="#667eea" Offset="0.2"></GradientStop>
@@ -94,6 +134,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                <TextBlock Text="{Binding SignUpStatusString}" Foreground="White" FontFamily="Lato" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             </StackPanel>
         </Grid>
     </Border>
