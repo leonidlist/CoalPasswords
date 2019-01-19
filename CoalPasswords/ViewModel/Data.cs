@@ -13,10 +13,12 @@ namespace CoalPasswords
         public ICommand CloseWindow { get; set; }
         public ICommand AddUser { get; set; }
         public ICommand SignIn { get; set; }
+        public ICommand OpenMainWindow { get; set; }
         private IRepository<User> UsersRepository { get; set; }
         public string EnteredLogin { get; set; }
         private string EnteredPassword { get; set; }
         private string _signUpStatusString;
+        private PasswordsMain _passwordsMain;
         public string SignUpStatusString
         {
             get => _signUpStatusString;
@@ -32,6 +34,12 @@ namespace CoalPasswords
             CloseWindow = new RelayCommand(x => System.Windows.Application.Current.Shutdown());
             AddUser = new RelayCommand(ExecuteAddingUser);
             SignIn = new RelayCommand(ExecuteSigningIn);
+            OpenMainWindow = new RelayCommand(ExecuteOpenMainWindow);
+        }
+        private void ExecuteOpenMainWindow(object param)
+        {
+            _passwordsMain = new PasswordsMain();
+            _passwordsMain.Show();
         }
         private void ExecuteSigningIn(object param)
         {
@@ -43,8 +51,11 @@ namespace CoalPasswords
                     var pass = param as PasswordBox;
                     EnteredPassword = pass.Password;
                     if(user.Password == EnteredPassword)
+                    {
                         SignUpStatusString = "Succesfully signed in.";
-                    return;
+                        ExecuteOpenMainWindow(null);
+                        return;
+                    }
                 }
                 SignUpStatusString = "This username not exist.";
                 return;
@@ -56,12 +67,17 @@ namespace CoalPasswords
         {
             if(UsersRepository.GetAll() is List<User> list)
             {
-                if(list.FindAll(x => x.Login == EnteredLogin).Count == 0)
+                if(list.FindAll(x => x.Login == EnteredLogin).Count == 0 && !String.IsNullOrEmpty(EnteredLogin))
                 {
                     var pass = param as PasswordBox;
                     EnteredPassword = pass.Password;
-                    UsersRepository.Add(new User(EnteredLogin, EnteredPassword));
-                    SignUpStatusString = "Succesfully signed up.";
+                    if(!String.IsNullOrEmpty(EnteredPassword))
+                    {
+                        UsersRepository.Add(new User(EnteredLogin, EnteredPassword));
+                        SignUpStatusString = "Succesfully signed up.";
+                        return;
+                    }
+                    SignUpStatusString = "Fill in all fields.";
                     return;
                 }
                 SignUpStatusString = "This username already exist.";
