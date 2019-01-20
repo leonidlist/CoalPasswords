@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoalPasswords"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        mc:Ignorable="d" ResizeMode="CanResizeWithGrip" Title="Coal Passwords" Height="720" Width="1280" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="../Styles/AllStyles.xaml"></ResourceDictionary>
+    </Window.Resources>
     <Border>
         <Border.CornerRadius>5</Border.CornerRadius>
         <Border.Background>
@@ -18,27 +20,132 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Name="TitleBar" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="7*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Name="MainWindowTitleBar" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center">Coal Passwords</Label>
-                <Button Width="25" Height="25" Cursor="Hand" Command="{Binding CloseWindow}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20 0" Background="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid>
-                                <Ellipse Fill="{TemplateBinding Background}"/>
-                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <Button.Content>
-                        <Viewbox Width="20" Height="20">
-                            <Canvas Width="24" Height="23">
-                                <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="White" />
-                            </Canvas>
-                        </Viewbox>
-                    </Button.Content>
-                </Button>
+                <Button Command="{Binding CloseWindow}" Style="{StaticResource CloseWindowButton}"></Button>
             </Grid>
+            <Border Grid.Row="1" Padding="20">
+                <ListBox Background="Transparent" BorderThickness="0" ItemsSource="{Binding TestRecords}">
+                    <ListBox.Resources>
+                        <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
+                    </ListBox.Resources>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Transparent"></Setter>
+                                    <Setter Property="BorderBrush" Value="White"></Setter>
+                                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                            <Style.Resources>
+                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"></SolidColorBrush>
+                            </Style.Resources>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="x:Type local:PasswordRecord">
+                            <UniformGrid Columns="2" Margin="0 10">
+                                <Ellipse Width="40" Height="40">
+                                    <Ellipse.Fill>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#667eea" Offset="0.2"></GradientStop>
+                                            <GradientStop Color="#764ba2" Offset="0.8"></GradientStop>
+                                        </LinearGradientBrush>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <StackPanel>
+                                    <Label Foreground="White" FontFamily="Lato" FontSize="14" Content="{Binding Title}"></Label>
+                                    <Label Foreground="White" FontFamily="Lato" FontSize="14" Content="{Binding Website}"></Label>
+                                </StackPanel>
+                            </UniformGrid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1" Margin="40" BorderThickness="3" CornerRadius="3">
+                <Border.BorderBrush>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#f093fb" Offset="0.2"></GradientStop>
+                        <GradientStop Color="#f5576c" Offset="0.8"></GradientStop>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border HorizontalAlignment="Right" Margin="0 0 20 0">
+                            <Ellipse Width="50" Height="50">
+                                <!--<Ellipse.Fill>
+                                    <ImageBrush ImageSource="https://walker-web.imgix.net/cms/Gradient_builder_2.jpg" Stretch="UniformToFill"></ImageBrush>
+                                </Ellipse.Fill>-->
+                                <Ellipse.Fill>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#667eea" Offset="0.2"></GradientStop>
+                                        <GradientStop Color="#764ba2" Offset="0.8"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                        <TextBlock HorizontalAlignment="Left" Margin="20 0 0 0" Grid.Column="1" Foreground="White" VerticalAlignment="Center" FontSize="24" FontFamily="Lato">Title</TextBlock>
+                    </Grid>
+                    <UniformGrid Columns="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="White" FontFamily="Lato" FontSize="20" Margin="0 0 10 0">Username:</Label>
+                        <TextBox MinWidth="200" Margin="10 0 0 0" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </UniformGrid>
+                    <UniformGrid Columns="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="White" FontFamily="Lato" FontSize="20" Margin="0 0 10 0">Email:</Label>
+                        <TextBox MinWidth="200" Margin="10 0 0 0" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </UniformGrid>
+                    <UniformGrid Columns="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="White" FontFamily="Lato" FontSize="20" Margin="0 0 10 0">Password:</Label>
+                        <TextBox MinWidth="200" Margin="10 0 0 0" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </UniformGrid>
+                    <UniformGrid Columns="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="White" FontFamily="Lato" FontSize="20" Margin="0 0 10 0">Website:</Label>
+                        <TextBox MinWidth="200" Margin="10 0 0 0" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </UniformGrid>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>

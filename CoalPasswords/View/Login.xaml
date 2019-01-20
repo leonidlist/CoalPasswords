@@ -27,23 +27,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Name="TitleBar" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Background="Transparent">
                 <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center">Log In</Label>
-                <Button Width="25" Height="25" Cursor="Hand" Command="{Binding CloseWindow}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="20 0" Background="Transparent">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Grid>
-                                <Ellipse Fill="{TemplateBinding Background}"/>
-                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Grid>
-                        </ControlTemplate>
-                    </Button.Template>
-                    <Button.Content>
-                        <Viewbox Width="20" Height="20">
-                            <Canvas Width="24" Height="23">
-                                <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="White" />
-                            </Canvas>
-                        </Viewbox>
-                    </Button.Content>
-                </Button>
+                <Button Style="{StaticResource CloseWindowButton}" Command="{Binding CloseWindow}"></Button>
             </Grid>
             <StackPanel Grid.Row="1" Name="UserLoginPanel">
                 <materialDesign:Card Height="350" Padding="32" Margin="20" VerticalAlignment="Center">

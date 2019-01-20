@@ -15,10 +15,13 @@ namespace CoalPasswords
         public ICommand SignIn { get; set; }
         public ICommand OpenMainWindow { get; set; }
         private IRepository<User> UsersRepository { get; set; }
+        public User CurrentUser { get; set; }
         public string EnteredLogin { get; set; }
+        public List<IRecord> TestRecords { get; set; } = new List<IRecord>();
         private string EnteredPassword { get; set; }
         private string _signUpStatusString;
         private PasswordsMain _passwordsMain;
+        private object passedParam;
         public string SignUpStatusString
         {
             get => _signUpStatusString;
@@ -28,17 +31,33 @@ namespace CoalPasswords
                 Notify();
             }
         }
-        public Data()
+        public Data(object param=null)
         {
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
+            TestRecords.Add(new PasswordRecord { Email = "Test email", Password = "123123", Title = "Password for GDrive", Username = "USer", Website = "drive.google.com" });
             UsersRepository = new Repository<User>();
             CloseWindow = new RelayCommand(x => System.Windows.Application.Current.Shutdown());
             AddUser = new RelayCommand(ExecuteAddingUser);
             SignIn = new RelayCommand(ExecuteSigningIn);
             OpenMainWindow = new RelayCommand(ExecuteOpenMainWindow);
+            passedParam = param;
         }
         private void ExecuteOpenMainWindow(object param)
         {
             _passwordsMain = new PasswordsMain();
+            _passwordsMain.DataContext = this;
             _passwordsMain.Show();
         }
         private void ExecuteSigningIn(object param)
@@ -53,6 +72,7 @@ namespace CoalPasswords
                     if(user.Password == EnteredPassword)
                     {
                         SignUpStatusString = "Succesfully signed in.";
+                        CurrentUser = user;
                         ExecuteOpenMainWindow(null);
                         return;
                     }

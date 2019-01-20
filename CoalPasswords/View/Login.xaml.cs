@@ -9,10 +9,11 @@ namespace CoalPasswords
     /// </summary>
     public partial class LoginPage : Window
     {
-        Data data = new Data();
+        Data data;
         public LoginPage()
         {
             InitializeComponent();
+            data = new Data(this);
             LoginMainBorder.DataContext = data;
         }
 
