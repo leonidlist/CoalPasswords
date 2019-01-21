@@ -9,17 +9,15 @@ namespace CoalPasswords
     /// </summary>
     public partial class LoginPage : Window
     {
-        Data data;
         public LoginPage()
         {
             InitializeComponent();
-            data = new Data(this);
-            LoginMainBorder.DataContext = data;
+            DataContext = new WindowViewModel(this);
         }
 
-        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
+        //private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    DragMove();
+        //}
     }
 }
