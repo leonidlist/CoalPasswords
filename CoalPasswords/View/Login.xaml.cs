@@ -13,11 +13,7 @@ namespace CoalPasswords
         {
             InitializeComponent();
             DataContext = new WindowViewModel(this);
+            UserLoginPanel.DataContext = new LoginWindowViewModel(this);
         }
-
-        //private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    DragMove();
-        //}
     }
 }

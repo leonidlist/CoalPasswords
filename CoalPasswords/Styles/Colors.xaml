@@ -13,5 +13,10 @@
         <GradientStop Color="#343746" Offset="0.1"></GradientStop>
         <GradientStop Color="#242430" Offset="0.6"></GradientStop>
     </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PrimaryBackgroundGradient2">
+        <GradientStop Color="#485563" Offset="0.1"></GradientStop>
+        <GradientStop Color="#29323c" Offset="0.58"></GradientStop>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="BlackTransparent" Color="Black" Opacity=".8"></SolidColorBrush>
     <SolidColorBrush x:Key="PrimaryForeground">White</SolidColorBrush>
 </ResourceDictionary>

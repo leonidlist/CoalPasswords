@@ -33,7 +33,7 @@
                 </TextBox>
                 <Label Foreground="White" FontSize="14" Margin="15 0">Password:</Label>
                 <PasswordBox Template="{StaticResource passwordbox}" Name="PasswordField" Background="White" Height="30" Foreground="Black" FontSize="14" Margin="15 5 15 15" BorderThickness="0" Padding="5"></PasswordBox>
-                <Button Name="SignInBtn" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=PasswordField}" Margin="20" Content="Sign In" Background="White" Padding="0,10" Width="100" FontSize="18" Cursor="Hand" BorderThickness="0">
+                <Button Name="SignInBtn" Command="{Binding SignInCommand}" CommandParameter="{Binding ElementName=PasswordField}" Margin="20" Content="Sign In" Background="White" Padding="0,10" Width="100" FontSize="18" Cursor="Hand" BorderThickness="0">
                     <Button.Effect>
                         <DropShadowEffect ShadowDepth="3" Opacity="0.3" Direction="270"></DropShadowEffect>
                     </Button.Effect>
@@ -60,7 +60,7 @@
                 </Button>
             </StackPanel>
         </materialDesign:Card>
-        <Button Command="{Binding AddUser}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource GradientButton}">Sign Up</Button>
-        <TextBlock Text="{Binding SignUpStatusString}" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <Button Command="{Binding AddUserCommand}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource GradientButton}">Sign Up</Button>
+        <TextBlock Text="{Binding EnteringStatusString}" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </StackPanel>
 </Window>

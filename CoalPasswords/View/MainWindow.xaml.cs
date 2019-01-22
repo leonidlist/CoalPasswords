@@ -22,11 +22,7 @@ namespace CoalPasswords
         public PasswordsMain()
         {
             InitializeComponent();
-        }
-
-        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
+            DataContext = new WindowViewModel(this);
         }
     }
 }

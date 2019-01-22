@@ -1,5 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoalPasswords">
-
+    <Style TargetType="{x:Type Label}" x:Key="SideMenuLabel">
+        <Setter Property="Padding" Value="50 10"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="#FD2D55"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleBold}"></Setter>
+    </Style>
 </ResourceDictionary>

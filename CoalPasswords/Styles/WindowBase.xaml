@@ -6,15 +6,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Border CornerRadius="{Binding WindowCornerRadius}" Background="{StaticResource PrimaryBackgroundGradient}">
+                    <Border CornerRadius="{Binding WindowCornerRadius}" Background="{StaticResource BlackTransparent}">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding TitleHeight}" />
+                                <RowDefinition Height="40" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" Name="TitleBar" Background="Transparent" Panel.ZIndex="2">
-                                <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
-                                <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindow}" Cursor="Hand"></Button>
+                            <Grid Grid.Row="0" Name="TitleBar" Background="Transparent">
+                                <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="{StaticResource PrimaryForeground}" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>

@@ -10,25 +10,25 @@ namespace CoalPasswords
     /// </summary>
     class WindowViewModel:INotifyPropertyChanged
     {
-        #region Private Members
+        #region Protected Members
         /// <summary>
         /// The window this ViewModel controls
         /// </summary>
-        private Window _mainWindow;
+        protected Window _mainWindow;
         /// <summary>
         /// Margin around the window to allow drop shadows
         /// </summary>
-        private int _outerMarginSize = 5;
+        protected int _outerMarginSize = 5;
         /// <summary>
         /// Window corner radius
         /// </summary>
-        private int _cornerRadius = 5;
-        private string _windowTitle;
+        protected int _cornerRadius = 5;
+        protected string _windowTitle;
         #endregion
 
         #region Public Members
         public event PropertyChangedEventHandler PropertyChanged;
-        public ICommand CloseWindow { get; set; }
+        public ICommand CloseWindowCommand { get; set; }
         public int ResizeBorder { get; set; } = 3;
         public int TitleHeight { get; set; } = 40;
         public Thickness ResizeBorderThickness
@@ -74,9 +74,9 @@ namespace CoalPasswords
             _mainWindow = window;
             _windowTitle = window.Title;
             ResizeMode = window.ResizeMode;
-            CloseWindow = new RelayCommand(x => _mainWindow.Close());
+            CloseWindowCommand = new RelayCommand(x => _mainWindow.Close());
         }
-        private void Notify([CallerMemberName]string callerName="")
+        protected void Notify([CallerMemberName]string callerName="")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(callerName));
         }
