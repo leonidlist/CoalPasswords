@@ -60,7 +60,7 @@
                 </Button>
             </StackPanel>
         </materialDesign:Card>
-        <Button Command="{Binding AddUserCommand}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource GradientButton}">Sign Up</Button>
+        <Button Command="{Binding AddUserCommand}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource SideMenuButton}">Sign Up</Button>
         <TextBlock Text="{Binding EnteringStatusString}" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
     </StackPanel>
 </Window>

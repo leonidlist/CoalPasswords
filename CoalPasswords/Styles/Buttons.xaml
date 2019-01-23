@@ -2,11 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoalPasswords">
     
+    <!-- Region SideMenuButtons -->
     <Style TargetType="{x:Type Button}" x:Key="SideMenuButton">
         <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="Padding" Value="50 10"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="Foreground" Value="{StaticResource PrimaryForeground}"></Setter>
+        <Setter Property="Foreground" Value="#626166"></Setter>
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -27,5 +28,61 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+    <!-- EndRegion -->
+
+    <!-- Region AddRecordButton -->
+    <Style TargetType="{x:Type Button}" x:Key="AddRecordButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="#FD2D55"></SolidColorBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    <!-- EndRegion -->
+
+    <!-- Region CloseWindowButton -->
+    <Style x:Key="CloseWindowButton" TargetType="Button">
+        <Setter Property="Width" Value="25"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="20 0"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Viewbox Width="20" Height="20">
+                    <Canvas Width="24" Height="23">
+                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="#626166"/>
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True"></Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- EndRegion -->
+
 </ResourceDictionary>

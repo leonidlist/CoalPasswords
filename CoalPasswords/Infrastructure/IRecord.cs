@@ -1,5 +1,8 @@
 ﻿namespace CoalPasswords
 {
+    /// <summary>
+    /// Интерфейс для записи пароля.
+    /// </summary>
     interface IRecord
     {
         string Title { get; set; }

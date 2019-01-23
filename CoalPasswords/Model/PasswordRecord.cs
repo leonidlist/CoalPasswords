@@ -1,5 +1,8 @@
 ﻿namespace CoalPasswords
 {
+    /// <summary>
+    /// Реализует интерфейс IRecord. Хранит в себе данные о записи пароля
+    /// </summary>
     class PasswordRecord : IRecord
     {
         public string Title { get; set; }

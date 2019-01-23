@@ -2,10 +2,16 @@
 
 namespace CoalPasswords
 {
+    /// <summary>
+    /// Зарегистрированный пользователь
+    /// </summary>
     class User
     {
         public string Login { get; set; }
         public string Password { get; set; }
+        /// <summary>
+        /// Коллекция паролей пользователя
+        /// </summary>
         public IRepository<IRecord> PasswordRecords { get; set; }
         public User(string login, string password)
         {

@@ -13,8 +13,16 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Name="TitleBar" Background="Transparent">
-                                <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="{StaticResource PrimaryForeground}" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
-                                <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Background="#EBEBF2">
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="#626166" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                </Grid>
+                                <Grid Grid.Column="1" Background="#FEFEFE">
+                                    <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
+                                </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
                                 <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
