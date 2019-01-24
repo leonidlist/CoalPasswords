@@ -48,15 +48,6 @@
                             <Setter Property="CornerRadius" Value="3"></Setter>
                         </Style>
                     </Button.Resources>
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Green"></Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
                 </Button>
             </StackPanel>
         </materialDesign:Card>

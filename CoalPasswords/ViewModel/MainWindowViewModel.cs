@@ -18,6 +18,10 @@ namespace CoalPasswords
         /// </summary>
         private User _currentUser;
         /// <summary>
+        /// Выбранный элемент на View
+        /// </summary>
+        public IRecord SelectedPassRecord { get; set; }
+        /// <summary>
         /// Команда открытия всплывающего окна о добавлении записи
         /// </summary>
         public ICommand AddTestCommand { get; set; }
@@ -29,6 +33,14 @@ namespace CoalPasswords
         /// Команда закрытия всплывающего окна о добавлении записи
         /// </summary>
         public ICommand ClosePopupAddRecordCommand { get; set; }
+        /// <summary>
+        /// Команда открытия всплывающего окна для просмотра записи пароля
+        /// </summary>
+        public ICommand OpenPopupShowRecordCommand { get; set; }
+        /// <summary>
+        /// Команда закрытия всплывающего окна для просмотра записи пароля
+        /// </summary>
+        public ICommand ClosePopupShowRecordCommand { get; set; }
         /// <summary>
         /// Коллекция сохраненных паролей текущего пользователя
         /// </summary>
@@ -49,6 +61,8 @@ namespace CoalPasswords
             PassRecords = new ObservableCollection<IRecord>(_currentUser.PasswordRecords.GetAll());
             AddTestCommand = new RelayCommand(x => window.AddRecordGrid.Visibility = Visibility.Visible);
             ClosePopupAddRecordCommand = new RelayCommand(x => window.AddRecordGrid.Visibility = Visibility.Hidden);
+            OpenPopupShowRecordCommand = new RelayCommand(OpenPopup);
+            ClosePopupShowRecordCommand = new RelayCommand(x => window.ShowRecord.Visibility = Visibility.Hidden);
             AddPasswordRecordCommand = new RelayCommand(AddPasswordRecord);
         }
 
@@ -56,6 +70,11 @@ namespace CoalPasswords
         {
             PasswordsMain curr = _mainWindow as PasswordsMain;
             PassRecords.Add(new PasswordRecord{ Title = curr.titleAdd.Text, Username = curr.usernameAdd.Text, Email = curr.emailAdd.Text, Password = curr.passwordAdd.Text, Website = curr.websiteAdd.Text});
+        }
+
+        private void OpenPopup(object param = null)
+        {
+            (_mainWindow as PasswordsMain).ShowRecord.Visibility = Visibility.Visible;
         }
     }
 }

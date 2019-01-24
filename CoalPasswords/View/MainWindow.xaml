@@ -4,7 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoalPasswords"
-        mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords" Style="{StaticResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords"
+        Style="{StaticResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen">
     
     <!-- Region ResizeBorder(Chrome) -->
     <WindowChrome.WindowChrome>
@@ -48,7 +51,8 @@
             <Grid.Effect>
                 <DropShadowEffect Opacity=".2" BlurRadius="40" Direction="180"></DropShadowEffect>
             </Grid.Effect>
-            <ListView Background="#FEFEFE" Name="MainListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemTemplate="{StaticResource ListViewTemplate}" BorderThickness="0" ItemsSource="{Binding PassRecords}" Foreground="Black" >
+            <ListView SelectedValue="{Binding SelectedPassRecord}" ItemTemplate="{StaticResource ListViewDataTemplate}" ItemsSource="{Binding PassRecords}"
+                      Background="#FEFEFE" Name="MainListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Foreground="Black" >
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel></WrapPanel>
@@ -71,20 +75,55 @@
         <!-- EndRegion -->
 
         <!-- Region PopupWindowAddRecord -->
-        <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#EBEBF2" Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
+        <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="White" Width="400" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
+            </Border.Effect>
             <StackPanel>
-                <Label>Title</Label>
-                <TextBox Name="titleAdd"></TextBox>
-                <Label>Username</Label>
-                <TextBox Name="usernameAdd"></TextBox>
-                <Label>Email</Label>
-                <TextBox Name="emailAdd"></TextBox>
-                <Label>Password</Label>
-                <TextBox Name="passwordAdd"></TextBox>
-                <Label>Website</Label>
-                <TextBox Name="websiteAdd"></TextBox>
-                <Button Command="{Binding AddPasswordRecordCommand}">Add</Button>
-                <Button Command="{Binding ClosePopupAddRecordCommand}">Close</Button>
+                <Label Style="{StaticResource FormLabelStyle}">Title</Label>
+                <TextBox Name="titleAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Style="{StaticResource FormLabelStyle}">Username</Label>
+                <TextBox Name="usernameAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Style="{StaticResource FormLabelStyle}">Email</Label>
+                <TextBox Name="emailAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Style="{StaticResource FormLabelStyle}">Password</Label>
+                <TextBox Name="passwordAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Style="{StaticResource FormLabelStyle}">Website</Label>
+                <TextBox Name="websiteAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <UniformGrid Columns="2" Rows="1" Margin="5 10">
+                    <Button Command="{Binding AddPasswordRecordCommand}" Style="{StaticResource FormButtonStyle}">Add</Button>
+                    <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource FormButtonStyle}">Close</Button>
+                </UniformGrid>
             </StackPanel>
         </Border>
         <!-- EndRegion -->
@@ -94,16 +133,16 @@
             <StackPanel>
                 <Label>Title</Label>
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
-                <!--<Label>Username</Label>
-                <TextBox Name="usernameAdd"></TextBox>
+                <Label>Username</Label>
+                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Username}"></TextBox>
                 <Label>Email</Label>
-                <TextBox Name="emailAdd"></TextBox>
+                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Email}"></TextBox>
                 <Label>Password</Label>
-                <TextBox Name="passwordAdd"></TextBox>
+                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Password}"></TextBox>
                 <Label>Website</Label>
-                <TextBox Name="websiteAdd"></TextBox>-->
+                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Website}"></TextBox>
                 <Button Command="{Binding AddPasswordRecordCommand}">Add</Button>
-                <Button Command="{Binding ClosePopupAddRecordCommand}">Close</Button>
+                <Button Command="{Binding ClosePopupShowRecordCommand}">Close</Button>
             </StackPanel>
         </Border>
         <!-- EndRegion -->

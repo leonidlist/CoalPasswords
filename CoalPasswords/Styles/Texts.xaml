@@ -11,4 +11,32 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource AppleBold}"></Setter>
     </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="FormLabelStyle">
+        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="Margin" Value="15 0"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="FormTextBoxStyle">
+        <!--<Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
+            </Setter.Value>
+        </Setter>-->
+        <Setter Property="BorderThickness" Value="0.5"></Setter>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="#2B2B30"></SolidColorBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Padding" Value="15 10"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="Margin" Value="15"></Setter>
+    </Style>
 </ResourceDictionary>
