@@ -26,7 +26,7 @@
                 <SolidColorBrush Color="#2B2B30"></SolidColorBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="Padding" Value="15 10"></Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>

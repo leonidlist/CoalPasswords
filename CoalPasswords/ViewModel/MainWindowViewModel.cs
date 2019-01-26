@@ -68,13 +68,22 @@ namespace CoalPasswords
 
         private void AddPasswordRecord(object param = null)
         {
+            Random rnd = new Random();
             PasswordsMain curr = _mainWindow as PasswordsMain;
-            PassRecords.Add(new PasswordRecord{ Title = curr.titleAdd.Text, Username = curr.usernameAdd.Text, Email = curr.emailAdd.Text, Password = curr.passwordAdd.Text, Website = curr.websiteAdd.Text});
+            PassRecords.Add(new PasswordRecord{ Title = curr.titleAdd.Text, Username = curr.usernameAdd.Text,
+                                                Email = curr.emailAdd.Text, Password = curr.passwordAdd.Text,
+                                                Website = curr.websiteAdd.Text, Category = curr.categoryAdd.Text,
+                                                ImageUrl = GetImageUrl(curr.websiteAdd.Text), CardColor = Pallete.Colors[rnd.Next(Pallete.Colors.Count)]});
         }
 
         private void OpenPopup(object param = null)
         {
             (_mainWindow as PasswordsMain).ShowRecord.Visibility = Visibility.Visible;
+        }
+
+        private string GetImageUrl(string url)
+        {
+            return $"http://{url}/favicon.ico";
         }
     }
 }

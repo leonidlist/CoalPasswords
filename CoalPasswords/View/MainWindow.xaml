@@ -72,7 +72,7 @@
         <!-- EndRegion -->
 
         <!-- Region PopupWindowAddRecord -->
-        <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="White" Width="400" Height="550" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
+        <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="White" Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
             </Border.Effect>
@@ -117,7 +117,15 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <UniformGrid Columns="2" Rows="1" Margin="5 10">
+                <Label Style="{StaticResource FormLabelStyle}">Category</Label>
+                <TextBox Name="categoryAdd" Style="{StaticResource FormTextBoxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <UniformGrid Columns="2" Rows="1" Margin="5 7">
                     <Button Command="{Binding AddPasswordRecordCommand}" Style="{StaticResource FormButtonStyle}">Add</Button>
                     <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource FormButtonStyle}">Close</Button>
                 </UniformGrid>
@@ -138,6 +146,8 @@
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Password}"></TextBox>
                 <Label>Website</Label>
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Website}"></TextBox>
+                <Label>Category</Label>
+                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Category}"></TextBox>
                 <Button Command="{Binding AddPasswordRecordCommand}">Add</Button>
                 <Button Command="{Binding ClosePopupShowRecordCommand}">Close</Button>
             </StackPanel>

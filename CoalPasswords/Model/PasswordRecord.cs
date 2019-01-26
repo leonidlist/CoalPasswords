@@ -10,5 +10,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Website { get; set; }
+        public string Category { get; set; }
+        public string ImageUrl { get; set; }
+        public Color CardColor { get; set; }
     }
 }

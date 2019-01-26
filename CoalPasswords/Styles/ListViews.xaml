@@ -5,7 +5,7 @@
 
     <!-- Region ListView Data Template -->
     <DataTemplate DataType="{x:Type local:IRecord}" x:Key="ListViewDataTemplate">
-        <Border DataContext="{Binding}" CornerRadius="5" Background="White" Width="150" Height="200" Margin="20">
+        <Border DataContext="{Binding}" CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction Command="{Binding DataContext.OpenPopupShowRecordCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
@@ -34,8 +34,10 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="Transparent"></Grid>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#2B2B30"
+                <Grid Grid.Row="0" Background="Transparent">
+                    <Image Source="{Binding ImageUrl}" Stretch="None"></Image>
+                </Grid>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding CardColor.ForegroundColor}"
                            Grid.Row="1" FontSize="14" Text="{Binding Title}" FontFamily="{StaticResource AppleBold}"></TextBlock>
             </Grid>
         </Border>
