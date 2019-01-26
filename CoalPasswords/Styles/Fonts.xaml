@@ -9,10 +9,10 @@
     <FontFamily x:Key="AppleThin">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Thin</FontFamily>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="FontFamily" Value="Google Sans"></Setter>
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockBaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="FontFamily" Value="Google Sans"></Setter>
     </Style>
 
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"></Style>

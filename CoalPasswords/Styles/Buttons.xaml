@@ -40,6 +40,9 @@
                             <Ellipse.Fill>
                                 <SolidColorBrush Color="#FD2D55"></SolidColorBrush>
                             </Ellipse.Fill>
+                            <Ellipse.BitmapEffect>
+                                <DropShadowBitmapEffect Direction="270" Opacity=".5" Softness=".7"></DropShadowBitmapEffect>
+                            </Ellipse.BitmapEffect>
                         </Ellipse>
                         <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                     </Grid>
@@ -65,7 +68,7 @@
             <Setter.Value>
                 <Viewbox Width="20" Height="20">
                     <Canvas Width="24" Height="23">
-                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="#626166"/>
+                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="White"/>
                     </Canvas>
                 </Viewbox>
             </Setter.Value>

@@ -74,6 +74,13 @@ namespace CoalPasswords
                                                 Email = curr.emailAdd.Text, Password = curr.passwordAdd.Text,
                                                 Website = curr.websiteAdd.Text, Category = curr.categoryAdd.Text,
                                                 ImageUrl = GetImageUrl(curr.websiteAdd.Text), CardColor = Pallete.Colors[rnd.Next(Pallete.Colors.Count)]});
+            curr.titleAdd.Text = "";
+            curr.usernameAdd.Text = "";
+            curr.emailAdd.Text = "";
+            curr.passwordAdd.Text = "";
+            curr.websiteAdd.Text = "";
+            curr.categoryAdd.Text = "";
+            (_mainWindow as PasswordsMain).AddRecordGrid.Visibility = Visibility.Hidden;
         }
 
         private void OpenPopup(object param = null)

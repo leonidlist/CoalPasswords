@@ -5,7 +5,7 @@
 
     <!-- Region ListView Data Template -->
     <DataTemplate DataType="{x:Type local:IRecord}" x:Key="ListViewDataTemplate">
-        <Border DataContext="{Binding}" CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20">
+        <Border Cursor="Hand" DataContext="{Binding}" CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction Command="{Binding DataContext.OpenPopupShowRecordCommand, RelativeSource={RelativeSource Mode=FindAncestor, 

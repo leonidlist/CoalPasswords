@@ -6,7 +6,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Border CornerRadius="{Binding WindowCornerRadius}" Background="White">
+                    <Border CornerRadius="{Binding WindowCornerRadius}">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                                <GradientStop Color="#B95C7F" Offset="0.0"></GradientStop>
+                                <GradientStop Color="#503B5D" Offset="0.7"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
@@ -17,10 +23,10 @@
                                     <ColumnDefinition Width="8*"></ColumnDefinition>
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Background="White" CornerRadius="{Binding WindowCornerRadius}">
-                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="Black" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                <Border Grid.Column="0" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
                                 </Border>
-                                <Border Grid.Column="1" Background="White" CornerRadius="{Binding WindowCornerRadius}">
+                                <Border Grid.Column="1" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
                                     <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
                                 </Border>
                             </Grid>

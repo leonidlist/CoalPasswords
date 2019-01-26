@@ -9,7 +9,7 @@
         x:Name="LogInPage"
         Margin="{Binding OuterMarginSize}"
         Background="White"
-        Title="Coal Passwords. Login" Height="450" Width="350"
+        Title="Coal Passwords. Login" Width="350"
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Style="{StaticResource LoginBaseStyle}">
     
     <!-- Region WindowChrome -->
@@ -20,11 +20,9 @@
     
     <!-- Region User Login Window-->
     <StackPanel Grid.Row="1" Name="UserLoginPanel" VerticalAlignment="Center">
-        <StackPanel.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="{Binding WindowCornerRadius}"></Setter>
-            </Style>
-        </StackPanel.Resources>
+        <Grid Height="200">
+            <Label FontWeight="Bold" Foreground="White" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Coal Passwords</Label>
+        </Grid>
         <Label Foreground="#2B2B30" Margin="15 0" FontSize="14">E-Mail:</Label>
         <TextBox Foreground="#2B2B30" Style="{StaticResource LoginTextBoxStyle}"></TextBox>
         <Label Foreground="#2B2B30" FontSize="14" Margin="15 0">Password:</Label>
