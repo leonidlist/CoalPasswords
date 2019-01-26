@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:CoalPasswords">
-    <Style TargetType="{x:Type Window}" x:Key="WindowBaseStyle">
+    <Style TargetType="{x:Type Window}" x:Key="LoginBaseStyle">
         <Setter Property="ResizeMode" Value="{Binding ResizeMode}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -14,13 +14,13 @@
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Name="TitleBar" Background="Transparent">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*"></ColumnDefinition>
                                     <ColumnDefinition Width="8*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Background="#EBEBF2" CornerRadius="{Binding WindowCornerRadius}">
-                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="#626166" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                <Border Grid.Column="0" Background="White" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="Black" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
                                 </Border>
-                                <Border Grid.Column="1" Background="#FEFEFE" CornerRadius="{Binding WindowCornerRadius}">
+                                <Border Grid.Column="1" Background="White" CornerRadius="{Binding WindowCornerRadius}">
                                     <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
                                 </Border>
                             </Grid>

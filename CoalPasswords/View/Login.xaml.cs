@@ -12,8 +12,7 @@ namespace CoalPasswords
         public LoginPage()
         {
             InitializeComponent();
-            DataContext = new WindowViewModel(this);
-            UserLoginPanel.DataContext = new LoginWindowViewModel(this);
+            DataContext = new LoginWindowViewModel(this);
         }
     }
 }

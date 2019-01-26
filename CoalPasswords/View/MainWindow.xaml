@@ -48,9 +48,6 @@
         
         <!-- Region PasswordRecordsListView -->
         <Grid Grid.Column="1" x:Name="ItemsCol" Background="#FEFEFE">
-            <Grid.Effect>
-                <DropShadowEffect Opacity=".2" BlurRadius="40" Direction="180"></DropShadowEffect>
-            </Grid.Effect>
             <ListView SelectedValue="{Binding SelectedPassRecord}" ItemTemplate="{StaticResource ListViewDataTemplate}" ItemsSource="{Binding PassRecords}"
                       Background="#FEFEFE" Name="MainListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Foreground="Black" >
                 <ListView.ItemsPanel>
@@ -67,7 +64,7 @@
             <Button.Content>
                 <Viewbox Width="20" Height="20">
                     <Canvas Width="24" Height="24">
-                        <Path Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="White" />
+                        <Path Name="svg" Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" Fill="White" />
                     </Canvas>
                 </Viewbox>
             </Button.Content>

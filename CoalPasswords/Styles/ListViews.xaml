@@ -3,6 +3,7 @@
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                     xmlns:local="clr-namespace:CoalPasswords">
 
+    <!-- Region ListView Data Template -->
     <DataTemplate DataType="{x:Type local:IRecord}" x:Key="ListViewDataTemplate">
         <Border DataContext="{Binding}" CornerRadius="5" Background="White" Width="150" Height="200" Margin="20">
             <i:Interaction.Triggers>
@@ -39,5 +40,6 @@
             </Grid>
         </Border>
     </DataTemplate>
+    <!-- EndRegion -->
 
 </ResourceDictionary>

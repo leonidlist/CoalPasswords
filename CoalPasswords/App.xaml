@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/ListViews.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Styles/Buttons.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Styles/AllStyles.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/LoginBase.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Styles/WindowBase.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

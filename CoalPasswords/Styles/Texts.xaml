@@ -20,11 +20,6 @@
     </Style>
 
     <Style TargetType="{x:Type TextBox}" x:Key="FormTextBoxStyle">
-        <!--<Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
-            </Setter.Value>
-        </Setter>-->
         <Setter Property="BorderThickness" Value="0.5"></Setter>
         <Setter Property="BorderBrush">
             <Setter.Value>
@@ -38,5 +33,41 @@
         <Setter Property="FontSize" Value="12"></Setter>
         <Setter Property="Foreground" Value="#2B2B30"></Setter>
         <Setter Property="Margin" Value="15"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="LoginTextBoxStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="5" Margin="15">
+                        <TextBox Text="{Binding EnteredLogin}" BorderThickness="0" Background="White" Padding="14 14"
+                                 Foreground="{TemplateBinding Foreground}" FontFamily="{StaticResource AppleMedium}" FontSize="14">
+                            <TextBox.Effect>
+                                <DropShadowEffect BlurRadius="10" Opacity=".5" Direction="270" ShadowDepth="2"></DropShadowEffect>
+                            </TextBox.Effect>
+                        </TextBox>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBoxLoginStyle">
+        <Setter Property="Background" Value="White"></Setter>
+        <Setter Property="Padding" Value="14"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleMedium}"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10" Opacity=".5" Direction="270" ShadowDepth="2"></DropShadowEffect>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5"></Setter>
+            </Style>
+        </Style.Resources>
     </Style>
 </ResourceDictionary>
