@@ -42,6 +42,14 @@ namespace CoalPasswords
         /// </summary>
         public ICommand ClosePopupShowRecordCommand { get; set; }
         /// <summary>
+        /// Команда открытия всплывающего окна настроек
+        /// </summary>
+        public ICommand OpenPopupSettingsCommand { get; set; }
+        /// <summary>
+        /// Команда закрытия всплывающего окна настроек
+        /// </summary>
+        public ICommand ClosePopupSettingsCommand { get; set; }
+        /// <summary>
         /// Коллекция сохраненных паролей текущего пользователя
         /// </summary>
         private ObservableCollection<IRecord> _passRecords;
@@ -64,6 +72,8 @@ namespace CoalPasswords
             OpenPopupShowRecordCommand = new RelayCommand(OpenPopup);
             ClosePopupShowRecordCommand = new RelayCommand(x => window.ShowRecord.Visibility = Visibility.Hidden);
             AddPasswordRecordCommand = new RelayCommand(AddPasswordRecord);
+            OpenPopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Visible);
+            ClosePopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Hidden);
         }
 
         private void AddPasswordRecord(object param = null)

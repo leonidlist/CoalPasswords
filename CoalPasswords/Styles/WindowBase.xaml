@@ -6,7 +6,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Border CornerRadius="{Binding WindowCornerRadius}" Background="White">
+                    <Border CornerRadius="{Binding WindowCornerRadius}">
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#f3e7e9" Offset="0.2"></GradientStop>
+                                <GradientStop Color="#e3eeff" Offset="0.7"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="40" />
@@ -17,10 +23,10 @@
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                     <ColumnDefinition Width="8*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Background="#EBEBF2" CornerRadius="{Binding WindowCornerRadius}">
+                                <Border Grid.Column="0" CornerRadius="{Binding WindowCornerRadius}">
                                     <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="#626166" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
                                 </Border>
-                                <Border Grid.Column="1" Background="#FEFEFE" CornerRadius="{Binding WindowCornerRadius}">
+                                <Border Grid.Column="1" CornerRadius="{Binding WindowCornerRadius}">
                                     <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
                                 </Border>
                             </Grid>

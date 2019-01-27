@@ -5,40 +5,34 @@
 
     <!-- Region ListView Data Template -->
     <DataTemplate DataType="{x:Type local:IRecord}" x:Key="ListViewDataTemplate">
-        <Border Cursor="Hand" DataContext="{Binding}" CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20">
+        <Border CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20" Cursor="Hand" DataContext="{Binding}">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Opacity=".4" BlurRadius="20" Direction="270"></DropShadowEffect>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction Command="{Binding DataContext.OpenPopupShowRecordCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
                                                          AncestorType={x:Type Window}}}"></i:InvokeCommandAction>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            <Border.Effect>
-                <DropShadowEffect Opacity=".3" BlurRadius="60" Direction="270"></DropShadowEffect>
-            </Border.Effect>
-            <Grid Background="Transparent">
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Background" Value="White"></Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <SolidColorBrush Color="Red"></SolidColorBrush>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="50"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="Transparent">
-                    <Image Source="{Binding ImageUrl}" Stretch="None"></Image>
-                </Grid>
+                <Image Grid.Row="0" Source="{Binding ImageUrl}" Stretch="None"></Image>
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding CardColor.ForegroundColor}"
-                           Grid.Row="1" FontSize="14" Text="{Binding Title}" FontFamily="{StaticResource AppleBold}"></TextBlock>
+                        Grid.Row="1" FontSize="14" Text="{Binding Title}" FontFamily="{StaticResource AppleBold}"></TextBlock>
             </Grid>
         </Border>
     </DataTemplate>

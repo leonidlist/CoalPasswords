@@ -40,9 +40,9 @@
                             <Ellipse.Fill>
                                 <SolidColorBrush Color="#FD2D55"></SolidColorBrush>
                             </Ellipse.Fill>
-                            <Ellipse.BitmapEffect>
+                            <!--<Ellipse.BitmapEffect>
                                 <DropShadowBitmapEffect Direction="270" Opacity=".5" Softness=".7"></DropShadowBitmapEffect>
-                            </Ellipse.BitmapEffect>
+                            </Ellipse.BitmapEffect>-->
                         </Ellipse>
                         <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
                     </Grid>
