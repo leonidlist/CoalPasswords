@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoalPasswords"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords"
         Style="{StaticResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen">
@@ -63,7 +64,7 @@
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Ellipse Width="30" Height="30" Fill="Black"></Ellipse>
-                    <TextBlock Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0">Bill Gates</TextBlock>
+                    <TextBlock Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0" Text="{Binding CurrentUser.FullNameString}"></TextBlock>
                     <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding OpenPopupSettingsCommand}">
                         <Button.Resources>
                             <Style TargetType="Button">
@@ -217,9 +218,51 @@
             <Border.Background>
                 <SolidColorBrush Color="Black" Opacity=".5"></SolidColorBrush>
             </Border.Background>
-            <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5" Background="White" Width="500" Height="500">
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5" Background="White" Width="500" Height="500" Padding="15">
                 <Grid>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="7*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15" VerticalAlignment="Center">
+                        <Ellipse Width="40" Height="40" Fill="Black" Margin="0 0 10 0"></Ellipse>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding CurrentUser.Name}"></TextBlock>
+                            <TextBlock Text="{Binding CurrentUser.LastName}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Style="{StaticResource FormButtonStyle}">Log Out</Button>
+                    <TextBlock Margin="15" VerticalAlignment="Center" Grid.Row="1">You have 27 password records. Thank You!</TextBlock>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="15">
+                            <Label Margin="0 5">Color theme:</Label>
+                            <ComboBox SelectedIndex="0" Margin="0 5">
+                                <ComboBoxItem>Light</ComboBoxItem>
+                                <ComboBoxItem>Dark</ComboBoxItem>
+                            </ComboBox>
+                            <Label Margin="0 5">Accent color:</Label>
+                            <ComboBox SelectedIndex="0" Margin="0 5">
+                                <ComboBoxItem>Red</ComboBoxItem>
+                                <ComboBoxItem>Yellow</ComboBoxItem>
+                                <ComboBoxItem>Green</ComboBoxItem>
+                                <ComboBoxItem>Blue</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="15">
+                            <Label Margin="0 5">Language:</Label>
+                            <ComboBox SelectedIndex="0" Margin="0 5">
+                                <ComboBoxItem>English</ComboBoxItem>
+                                <ComboBoxItem>Ukrainian</ComboBoxItem>
+                                <ComboBoxItem>Russian</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                    <!--<ComboBox SelectedIndex="0" Style="{DynamicResource MaterialDesignComboBox}">-->
                 </Grid>
             </Border>
         </Border>

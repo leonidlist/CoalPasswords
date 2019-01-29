@@ -7,6 +7,9 @@ namespace CoalPasswords
     /// </summary>
     class User
     {
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string FullNameString { get => Name + " " + LastName; private set { FullNameString = value; } }
         public string Login { get; set; }
         public string Password { get; set; }
         /// <summary>
@@ -18,6 +21,8 @@ namespace CoalPasswords
             Login = login;
             Password = password;
             PasswordRecords = new Repository<IRecord>();
+            Name = "Bill";
+            LastName = "Gates";
         }
         public User(string login, string password, IList<IRecord> repository)
         {
