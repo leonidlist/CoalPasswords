@@ -11,6 +11,10 @@
         Background="White"
         Title="Coal Passwords. Login" Width="350"
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Style="{StaticResource LoginBaseStyle}">
+
+    <Window.DataContext>
+        <local:ViewModelLocator></local:ViewModelLocator>
+    </Window.DataContext>
     
     <!-- Region WindowChrome -->
     <WindowChrome.WindowChrome>
@@ -19,7 +23,7 @@
     <!-- EndRegion -->
     
     <!-- Region User Login Window-->
-    <StackPanel Grid.Row="1" Name="UserLoginPanel" VerticalAlignment="Center">
+    <StackPanel DataContext="{Binding LoginViewModel}" Grid.Row="1" Name="UserLoginPanel" VerticalAlignment="Center">
         <Grid Height="200">
             <Label FontWeight="Bold" Foreground="White" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Coal Passwords</Label>
         </Grid>
