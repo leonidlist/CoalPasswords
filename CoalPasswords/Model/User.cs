@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CoalPasswords
 {
     /// <summary>
     /// Зарегистрированный пользователь
     /// </summary>
+    [Serializable]
     class User
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string FullNameString { get => Name + " " + LastName; private set { FullNameString = value; } }

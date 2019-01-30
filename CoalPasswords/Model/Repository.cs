@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace CoalPasswords
 {
+    [Serializable]
     class Repository<T> : IRepository<T>
     {
         public IList<T> RepositoryContext { get; set; }

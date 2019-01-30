@@ -1,0 +1,356 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:local="clr-namespace:CoalPasswords">
+
+    <!-- Region Buttons -->
+    
+    <!-- Region SideMenuButtons -->
+    <Style TargetType="{x:Type Button}" x:Key="SideMenuButton">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Padding" Value="50 10"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="#626166"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleBold}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="5" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FD2D55"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- EndRegion -->
+
+    <!-- Region AddRecordButton -->
+    <Style TargetType="{x:Type Button}" x:Key="AddRecordButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                            <Ellipse.Fill>
+                                <SolidColorBrush Color="#FD2D55"></SolidColorBrush>
+                            </Ellipse.Fill>
+                            <!--<Ellipse.BitmapEffect>
+                                <DropShadowBitmapEffect Direction="270" Opacity=".5" Softness=".7"></DropShadowBitmapEffect>
+                            </Ellipse.BitmapEffect>-->
+                        </Ellipse>
+                        <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
+    <!-- EndRegion -->
+
+    <!-- Region CloseWindowButton -->
+    <Style x:Key="CloseWindowButton" TargetType="Button">
+        <Setter Property="Width" Value="25"></Setter>
+        <Setter Property="Height" Value="25"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Margin" Value="20 0"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <Viewbox Width="20" Height="20">
+                    <Canvas Width="24" Height="23">
+                        <Path Data="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" Fill="Black"/>
+                    </Canvas>
+                </Viewbox>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True"></Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- EndRegion -->
+
+    <!-- Region FormButton -->
+    <Style TargetType="{x:Type Button}" x:Key="FormButtonStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="brdr" CornerRadius="5" Padding="10 15" BorderThickness="0" Cursor="Hand" Background="#FD2D55" Margin="10 0">
+                        <Border.Effect>
+                            <DropShadowEffect Opacity=".3" Direction="270" BlurRadius="5"></DropShadowEffect>
+                        </Border.Effect>
+                        <TextBlock Name="content" Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14"></TextBlock>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" TargetName="content" Value="#FD2D55"></Setter>
+                            <Setter Property="Background" TargetName="brdr" Value="White"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- EndRegion -->
+    
+    <!-- EndRegion -->
+    
+    <!-- Region Colors -->
+    <LinearGradientBrush x:Key="PrimaryGradientBrush">
+        <GradientStop Color="#667eea" Offset="0.2"></GradientStop>
+        <GradientStop Color="#764ba2" Offset="0.8"></GradientStop>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="AccentGradientBrush">
+        <GradientStop Color="#f093fb" Offset="0.2"></GradientStop>
+        <GradientStop Color="#f5576c" Offset="0.8"></GradientStop>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PrimaryBackgroundGradient">
+        <GradientStop Color="#343746" Offset="0.1"></GradientStop>
+        <GradientStop Color="#242430" Offset="0.6"></GradientStop>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PrimaryBackgroundGradient2">
+        <GradientStop Color="#485563" Offset="0.1"></GradientStop>
+        <GradientStop Color="#29323c" Offset="0.58"></GradientStop>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="BlackTransparent" Color="Black" Opacity=".8"></SolidColorBrush>
+    <SolidColorBrush x:Key="PrimaryForeground">White</SolidColorBrush>
+    <!-- EndRegion -->
+    
+    <!-- Region Fonts -->
+    <FontFamily x:Key="AppleBlack">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Black</FontFamily>
+    <FontFamily x:Key="AppleBold">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Bold</FontFamily>
+    <FontFamily x:Key="AppleLight">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Light</FontFamily>
+    <!--<FontFamily x:Key="AppleMedium">pack://application:,,,/Assets/Fonts#/#SFUIDisplay-Medium</FontFamily>-->
+    <FontFamily x:Key="AppleRegular">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Regular</FontFamily>
+    <FontFamily x:Key="AppleThin">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Thin</FontFamily>
+
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="Google Sans"></Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockBaseStyle">
+        <Setter Property="FontFamily" Value="Google Sans"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockBaseStyle}"></Style>
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <!-- EndRegion -->
+    
+    <!-- Region ListView -->
+    <!-- Region ListView Data Template -->
+    <DataTemplate DataType="{x:Type local:IRecord}" x:Key="ListViewDataTemplate">
+        <Border CornerRadius="5" Background="{Binding CardColor.BackgroundColor}" Width="150" Height="200" Margin="20" Cursor="Hand" DataContext="{Binding}">
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Opacity=".4" BlurRadius="20" Direction="270"></DropShadowEffect>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <i:InvokeCommandAction Command="{Binding DataContext.OpenPopupShowRecordCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                         AncestorType={x:Type Window}}}"></i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="{Binding ImageUrl}" Stretch="None"></Image>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding CardColor.ForegroundColor}"
+                        Grid.Row="1" FontSize="14" Text="{Binding Title}" FontFamily="{StaticResource AppleBold}"></TextBlock>
+            </Grid>
+        </Border>
+    </DataTemplate>
+    <!-- EndRegion -->
+    <!-- EndRegion -->
+    
+    <!-- Region Login View Base Style-->
+
+    <Style TargetType="{x:Type Window}" x:Key="LoginBaseStyle">
+        <Setter Property="ResizeMode" Value="{Binding ResizeMode}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border CornerRadius="{Binding WindowCornerRadius}">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
+                                <GradientStop Color="#B95C7F" Offset="0.0"></GradientStop>
+                                <GradientStop Color="#503B5D" Offset="0.7"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Name="TitleBar" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                </Border>
+                                <Border Grid.Column="1" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- EndRegion -->
+    
+    <!-- Region Texts -->
+    <Style TargetType="{x:Type Label}" x:Key="SideMenuLabel">
+        <Setter Property="Padding" Value="50 10"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="#FD2D55"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleBold}"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="FormLabelStyle">
+        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="Margin" Value="15 0"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="FormTextBoxStyle">
+        <Setter Property="BorderThickness" Value="0.5"></Setter>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="#2B2B30"></SolidColorBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Padding" Value="15 5"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontFamily" Value="{StaticResource AppleRegular}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="Margin" Value="15"></Setter>
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}" x:Key="LoginTextBoxStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border CornerRadius="5" Margin="15">
+                        <TextBox Text="{Binding EnteredLogin}" BorderThickness="0" Background="White" Padding="14 14"
+                                 Foreground="{TemplateBinding Foreground}" FontSize="14">
+                            <TextBox.Effect>
+                                <DropShadowEffect BlurRadius="10" Opacity=".5" Direction="270" ShadowDepth="2"></DropShadowEffect>
+                            </TextBox.Effect>
+                        </TextBox>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBoxLoginStyle">
+        <Setter Property="Background" Value="White"></Setter>
+        <Setter Property="Padding" Value="14"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Foreground" Value="#2B2B30"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="10" Opacity=".5" Direction="270" ShadowDepth="2"></DropShadowEffect>
+            </Setter.Value>
+        </Setter>
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5"></Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <!-- EndRegion-->
+    
+    <!-- Region Main View Base Style-->
+    <Style TargetType="{x:Type Window}" x:Key="WindowBaseStyle">
+        <Setter Property="ResizeMode" Value="{Binding ResizeMode}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Window}">
+                    <Border CornerRadius="{Binding WindowCornerRadius}">
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#f3e7e9" Offset="0.2"></GradientStop>
+                                <GradientStop Color="#e3eeff" Offset="0.7"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0" Name="TitleBar" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="#626166" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                </Border>
+                                <Border Grid.Column="1" CornerRadius="{Binding WindowCornerRadius}">
+                                    <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
+                                </Border>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- EndRegion -->
+
+</ResourceDictionary>
