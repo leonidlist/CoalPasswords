@@ -19,10 +19,20 @@ namespace CoalPasswords
         /// Текущий пользователь
         /// </summary>
         private User _currentUser;
+        private Visibility _recordPopupVisibility;
         /// <summary>
         /// Выбранный элемент на View
         /// </summary>
         public IRecord SelectedPassRecord { get; set; }
+        public Visibility RecordPopupVisibility
+        {
+            get => _recordPopupVisibility;
+            set
+            {
+                _recordPopupVisibility = value;
+                NotifyOfPropertyChange(() => RecordPopupVisibility);
+            }
+        }
         /// <summary>
         /// Команда открытия всплывающего окна о добавлении записи
         /// </summary>
@@ -104,9 +114,13 @@ namespace CoalPasswords
             //dbc.AddPasswordRecord(tmp, CurrentUser);
         }
 
-        private void OpenPopup(object param = null)
+        public void ToggleRecordPopupVisibility()
         {
             //(_mainWindow as MainView).ShowRecord.Visibility = Visibility.Visible;
+            if (RecordPopupVisibility == Visibility.Hidden)
+                RecordPopupVisibility = Visibility.Visible;
+            else
+                RecordPopupVisibility = Visibility.Hidden;
         }
 
         private string GetImageUrl(string url)

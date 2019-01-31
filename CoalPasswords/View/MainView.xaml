@@ -189,7 +189,7 @@
         
         <!-- Region PopupWindowShowRecord -->
         <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}"
-                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="ShowRecord">
+                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding RecordPopupVisibility}" Name="ShowRecord">
             <StackPanel>
                 <Label>Title</Label>
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>

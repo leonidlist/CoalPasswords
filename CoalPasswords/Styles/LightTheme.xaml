@@ -231,8 +231,7 @@
             </Border.Style>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                    <i:InvokeCommandAction Command="{Binding DataContext.OpenPopupShowRecordCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                                         AncestorType={x:Type Window}}}"></i:InvokeCommandAction>
+                    <cal:ActionMessage MethodName="ToggleRecordPopupVisibility"></cal:ActionMessage>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Grid>
