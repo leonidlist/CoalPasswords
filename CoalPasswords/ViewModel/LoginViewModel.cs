@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
+using Caliburn.Micro;
 
 namespace CoalPasswords
 {
@@ -13,6 +14,7 @@ namespace CoalPasswords
         private IRepository<User> UsersRepository { get; set; }
         private User _signedInUser;
         private MainView _passwordsMainWindow;
+        private IWindowManager windowManager;
         private string _enteringStatusString;
         private string EnteredPassword { get; set; }
         public ICommand AddUserCommand { get; set; }
@@ -56,9 +58,9 @@ namespace CoalPasswords
             }
         }
 
-        public LoginViewModel() : base()
+        public LoginViewModel(IWindowManager windowManager) : base()
         {
-            
+            this.windowManager = windowManager;
         }
 
         private void SetThemeOnStartup(string themeName)
@@ -82,9 +84,7 @@ namespace CoalPasswords
         }
         public void OpenMainWindow(object param)
         {
-            //_passwordsMainWindow = new MainView();
-            //_passwordsMainWindow.DataContext = new MainViewModel(_passwordsMainWindow, _signedInUser);
-            //_passwordsMainWindow.Show();
+            windowManager.ShowWindow(new MainViewModel(_signedInUser));
         }
         public void SignIn(object param, object wnd)
         {
