@@ -38,27 +38,24 @@ namespace CoalPasswords
             AddUserCommand = new RelayCommand(ExecuteAddingUser);
             SignInCommand = new RelayCommand(ExecuteSigningIn);
             OpenMainWindowCommand = new RelayCommand(OpenMainWindow);
-            SerializingCommand = new RelayCommand(Serialize);
             DeserializingCommand = new RelayCommand(Deserialize);
         }
-        private void Serialize(object param)
+        private void SetThemeOnStartup(string themeName)
         {
-            //BinaryFormatter bf = new BinaryFormatter();
-            //using(FileStream fs = new FileStream("data.coal", FileMode.OpenOrCreate))
-            //{
-            //    bf.Serialize(fs, UsersRepository);
-            //}
+            Application.Current.Resources.Clear();
+            ResourceDictionary theme = new ResourceDictionary();
+            theme.Source = new Uri($"pack://application:,,,/Styles/{themeName}.xaml", UriKind.Absolute);
+            ResourceDictionary material1 = new ResourceDictionary();
+            material1.Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml");
+            ResourceDictionary material2 = new ResourceDictionary();
+            material1.Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml");
+            Application.Current.Resources.MergedDictionaries.Add(theme);
+            Application.Current.Resources.MergedDictionaries.Add(material1);
+            Application.Current.Resources.MergedDictionaries.Add(material2);
         }
         private void Deserialize(object param)
         {
-            //try
-            //{
-            //    BinaryFormatter bf = new BinaryFormatter();
-            //    using (FileStream fs = new FileStream("data.coal", FileMode.Open))
-            //    {
-            //        UsersRepository = (Repository<User>)bf.Deserialize(fs);
-            //    }
-            //} catch(Exception) { UsersRepository = new Repository<User>(); }
+            SetThemeOnStartup("DarkTheme");
             DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
             UsersRepository = dbc.GetUsers();
         }

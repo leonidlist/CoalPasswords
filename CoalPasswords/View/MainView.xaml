@@ -7,7 +7,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords"
-        Style="{StaticResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
+        Style="{DynamicResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen">
     
     <!-- Region ResizeBorder(Chrome) -->
@@ -27,7 +27,7 @@
                 <RowDefinition Height="85*"></RowDefinition>
                 <RowDefinition Height="15*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Border CornerRadius="5" Background="#FFFFFF" Margin="20" Grid.Row="0">
+            <Border CornerRadius="5" Background="{StaticResource BackgroundColor}" Margin="20" Grid.Row="0">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity=".6" Direction="270" ShadowDepth="1"></DropShadowEffect>
                 </Border.Effect>
@@ -53,7 +53,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            <Border CornerRadius="5" Background="#FFFFFF" Margin="20" Grid.Row="1" Padding="10">
+            <Border CornerRadius="5" Background="{StaticResource BackgroundColor}" Margin="20" Grid.Row="1" Padding="10">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="20" Opacity=".6" Direction="270" ShadowDepth="1"></DropShadowEffect>
                 </Border.Effect>
@@ -63,8 +63,8 @@
                         <ColumnDefinition Width="6*"></ColumnDefinition>
                         <ColumnDefinition Width="2*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Ellipse Width="30" Height="30" Fill="Black"></Ellipse>
-                    <TextBlock Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0" Text="{Binding CurrentUser.FullNameString}"></TextBlock>
+                    <Ellipse Width="30" Height="30" Fill="{StaticResource ForegroundColor}"></Ellipse>
+                    <TextBlock Foreground="{StaticResource ForegroundColor}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0" Text="{Binding CurrentUser.FullNameString}"></TextBlock>
                     <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding OpenPopupSettingsCommand}">
                         <Button.Resources>
                             <Style TargetType="Button">
@@ -79,7 +79,7 @@
                         </Button.Resources>
                         <Viewbox Width="20" Height="20">
                             <Canvas Width="24" Height="24">
-                                <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="Black" />
+                                <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="{StaticResource ForegroundColor}" />
                             </Canvas>
                         </Viewbox>
                     </Button>
@@ -125,7 +125,8 @@
         <!-- EndRegion -->
 
         <!-- Region PopupWindowAddRecord -->
-        <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="White" Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
+        <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}"
+                Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
             </Border.Effect>
@@ -187,7 +188,8 @@
         <!-- EndRegion -->
         
         <!-- Region PopupWindowShowRecord -->
-        <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="#EBEBF2" Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="ShowRecord">
+        <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}"
+                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="ShowRecord">
             <StackPanel>
                 <Label>Title</Label>
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
@@ -208,7 +210,8 @@
         <!-- EndRegion -->
 
         <!-- Region PopupSettings -->
-        <Border Cursor="Hand" Grid.ColumnSpan="2" Width="{Binding ElementName=mWnd, Path=Width}" Height="{Binding ElementName=mWnd, Path=Height}" Visibility="Hidden" Name="SettingsPopup">
+        <Border Cursor="Hand" Grid.ColumnSpan="2" Width="{Binding ElementName=mWnd, Path=Width}" Height="{Binding ElementName=mWnd, Path=Height}"
+                Visibility="Hidden" Name="SettingsPopup">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
                     <i:InvokeCommandAction Command="{Binding DataContext.ClosePopupSettingsCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
@@ -218,7 +221,8 @@
             <Border.Background>
                 <SolidColorBrush Color="Black" Opacity=".5"></SolidColorBrush>
             </Border.Background>
-            <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5" Background="White" Width="500" Height="500" Padding="15">
+            <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5"
+                    Background="{StaticResource BackgroundColor}" Width="500" Height="500" Padding="15">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*"></RowDefinition>
