@@ -73,5 +73,17 @@ namespace CoalPasswords
             }
             return true;
         }
+
+        public bool AddUser(string name, string lastname, string login, string password)
+        {
+            string query = $"INSERT INTO Users(Name, LastName, Login, Password) VALUES ('{name}','{lastname}','{login}','{password}')";
+            using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DataSource}"))
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            return true;
+        }
     }
 }

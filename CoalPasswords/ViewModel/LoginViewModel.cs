@@ -103,6 +103,8 @@ namespace CoalPasswords
                     if (!String.IsNullOrEmpty(EnteredPassword))
                     {
                         UsersRepository.Add(new User(EnteredLogin, EnteredPassword));
+                        DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
+                        dbc.AddUser("Steve", "Jobs", EnteredLogin, EnteredPassword);
                         EnteringStatusString = "Succesfully signed up.";
                         return;
                     }

@@ -10,7 +10,7 @@
         x:Name="LogInPage"
         Margin="{Binding OuterMarginSize}"
         Background="White"
-        Title="Coal Passwords. Login" Width="350"
+        Title="Login" Width="350"
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Style="{StaticResource LoginBaseStyle}">
 
     <i:Interaction.Triggers>
@@ -31,23 +31,52 @@
     <!-- EndRegion -->
     
     <!-- Region User Login Window-->
-    <StackPanel Grid.Row="1" Name="UserLoginPanel" VerticalAlignment="Center">
-        <Grid Height="200">
-            <Label FontWeight="Bold" Foreground="White" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center">Coal Passwords</Label>
-        </Grid>
-        <Label Foreground="#2B2B30" Margin="15 0" FontSize="14">E-Mail:</Label>
-        <TextBox Foreground="#2B2B30" Style="{StaticResource LoginTextBoxStyle}"></TextBox>
-        <Label Foreground="#2B2B30" FontSize="14" Margin="15 0">Password:</Label>
-        <PasswordBox Style="{StaticResource PasswordBoxLoginStyle}" Name="PasswordField" Margin="15"></PasswordBox>
-        <Grid Margin="5 15">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Name="SignInBtn" Command="{Binding SignInCommand}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource FormButtonStyle}">Sign In</Button>
-            <Button Grid.Column="1" Command="{Binding AddUserCommand}" CommandParameter="{Binding ElementName=PasswordField}" Style="{StaticResource FormButtonStyle}">Sign Up</Button>
-        </Grid>
-        <TextBlock Text="{Binding EnteringStatusString}" Foreground="#2B2B30" FontFamily="{StaticResource AppleBold}" FontSize="14" Margin="0 10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Height="115">
+                <Viewbox VerticalAlignment="Center" Width="70" Height="70">
+                    <Canvas Width="256" Height="256">
+                        <Path Data="M309.262,225.284L262.658,82.323c-0.56-1.717-1.432-3.285-2.531-4.669
+		c-1.512-1.902-3.465-3.443-5.742-4.436L132.809,20.277c-2.719-1.184-5.676-1.514-8.506-1.032c-2.162,0.368-4.252,1.209-6.105,2.512
+		L6.377,100.316C2.38,103.124,0,107.703,0,112.589V234.98c0,6.253,3.879,11.85,9.733,14.045l109.297,40.988
+		c0.623,0.233,1.261,0.409,1.903,0.558c1.105,0.255,2.232,0.397,3.363,0.397c1.312,0,2.625-0.172,3.905-0.518l170.703-46.035
+		c3.972-1.07,7.328-3.725,9.286-7.342C310.149,233.456,310.536,229.194,309.262,225.284z" Fill="#222224" RenderTransformOrigin="0.506,0.308"/>
+                        <Path Data="M254.385,73.219L132.809,20.277c-2.719-1.184-5.676-1.514-8.506-1.032l27.667,144.029l108.157-85.62
+		C258.615,75.752,256.662,74.211,254.385,73.219z" Fill="#403F44"/>
+                        <Path Data="M309.262,225.284L262.658,82.323c-0.56-1.717-1.432-3.285-2.531-4.669l-108.157,85.62
+		L120.934,290.57c1.105,0.255,2.232,0.397,3.363,0.397c1.312,0,2.625-0.172,3.905-0.518l170.703-46.035
+		c3.972-1.07,7.328-3.725,9.286-7.342C310.149,233.456,310.536,229.194,309.262,225.284z" Fill="#313133"/>
+                    </Canvas>
+                </Viewbox>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Margin="40 15 0 0" FontFamily="QuickSand" FontSize="24" FontWeight="Bold">Coal</Label>
+                    <Label Margin="40 0" FontFamily="QuickSand" FontSize="24" FontWeight="Bold">Passwords</Label>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Margin="0 30" FontFamily="QuickSand" HorizontalAlignment="Center" FontSize="14">Welcome back!</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <Label HorizontalAlignment="Center">Email:</Label>
+            <TextBox Margin="50 20" HorizontalContentAlignment="Center" Text="{Binding EnteredLogin}"
+                     ToolTip="Email" Style="{DynamicResource MaterialDesignTextBox}"
+                     FontFamily="QuickSand" Cursor="IBeam"></TextBox>
+            <Label HorizontalAlignment="Center">Password:</Label>
+            <PasswordBox HorizontalContentAlignment="Center" Name="PasswordField" Margin="50 20"
+                         ToolTip="Password" Style="{DynamicResource MaterialDesignPasswordBox}"
+                         FontFamily="QuickSand" Cursor="IBeam"></PasswordBox>
+            <Button Margin="50 15" Style="{StaticResource LogInButton}" Command="{Binding SignInCommand}"
+                    CommandParameter="{Binding ElementName=PasswordField}">Log In</Button>
+            <Label Margin="0 10" HorizontalAlignment="Center">Don't have an account?</Label>
+            <Button Style="{StaticResource SignUpButton}" Content="Sign Up"
+                    Command="{Binding AddUserCommand}" CommandParameter="{Binding ElementName=PasswordField}"></Button>
+            <TextBlock Text="{Binding EnteringStatusString}" Foreground="{StaticResource ForegroundColor}"
+                       FontFamily="QuickSand" FontSize="12" Margin="0 20"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+    </Grid>
     <!-- EndRegion -->
 </Window>

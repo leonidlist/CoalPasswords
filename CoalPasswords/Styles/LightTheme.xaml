@@ -114,50 +114,103 @@
     </Style>
     <!-- EndRegion -->
     
+    <!-- Region LogIn Button -->
+    <Style TargetType="{x:Type Button}" x:Key="LogInButton">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Padding" Value="50 10"></Setter>
+        <Setter Property="Background" Value="#FFCE49"></Setter>
+        <Setter Property="Foreground" Value="#4A515F"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="16"></Setter>
+        <Setter Property="FontFamily" Value="QuickSand"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="BorderBrush" Value="#FFCE49"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="20" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                        <ContentPresenter Content="{TemplateBinding Content}"></ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FFCE49"></Setter>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="BorderThickness" Value="3"></Setter>
+                <Setter Property="Padding" Value="47 7"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- EndRegion -->
+    
+    <!-- Region Sign Up Button -->
+    <Style TargetType="{x:Type Button}" x:Key="SignUpButton">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="#4A515F"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontFamily" Value="QuickSand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="0" Background="{TemplateBinding Background}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock TextDecorations="Underline"
+                                 Foreground="{TemplateBinding Foreground}" FontSize="{TemplateBinding FontSize}"
+                                 FontFamily="{TemplateBinding FontFamily}">
+                            <ContentPresenter></ContentPresenter>
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FFCE49"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!-- EndRegion -->
+    
     <!-- EndRegion -->
     
     <!-- Region Colors -->
-    <LinearGradientBrush x:Key="PrimaryGradientBrush">
-        <GradientStop Color="#667eea" Offset="0.2"></GradientStop>
-        <GradientStop Color="#764ba2" Offset="0.8"></GradientStop>
+    <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1" x:Key="BackgroundGradient">
+        <GradientStop Color="#f3e7e9" Offset="0.2"></GradientStop>
+        <GradientStop Color="#e3eeff" Offset="0.7"></GradientStop>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="AccentGradientBrush">
-        <GradientStop Color="#f093fb" Offset="0.2"></GradientStop>
-        <GradientStop Color="#f5576c" Offset="0.8"></GradientStop>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="PrimaryBackgroundGradient">
-        <GradientStop Color="#343746" Offset="0.1"></GradientStop>
-        <GradientStop Color="#242430" Offset="0.6"></GradientStop>
-    </LinearGradientBrush>
-    <LinearGradientBrush x:Key="PrimaryBackgroundGradient2">
-        <GradientStop Color="#485563" Offset="0.1"></GradientStop>
-        <GradientStop Color="#29323c" Offset="0.58"></GradientStop>
-    </LinearGradientBrush>
-    <SolidColorBrush x:Key="BlackTransparent" Color="Black" Opacity=".8"></SolidColorBrush>
-    <SolidColorBrush x:Key="PrimaryForeground">White</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentColor">#FFCE49</SolidColorBrush>
+    <SolidColorBrush x:Key="ForegroundColor">#4A515F</SolidColorBrush>
     <!-- EndRegion -->
     
     <!-- Region Fonts -->
-    <FontFamily x:Key="AppleBlack">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Black</FontFamily>
+    <!--<FontFamily x:Key="AppleBlack">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Black</FontFamily>
     <FontFamily x:Key="AppleBold">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Bold</FontFamily>
-    <FontFamily x:Key="AppleLight">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Light</FontFamily>
+    <FontFamily x:Key="AppleLight">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Light</FontFamily>-->
     <!--<FontFamily x:Key="AppleMedium">pack://application:,,,/Assets/Fonts#/#SFUIDisplay-Medium</FontFamily>-->
-    <FontFamily x:Key="AppleRegular">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Regular</FontFamily>
-    <FontFamily x:Key="AppleThin">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Thin</FontFamily>
+    <!--<FontFamily x:Key="AppleRegular">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Regular</FontFamily>
+    <FontFamily x:Key="AppleThin">pack://application:,,,/Assets/Fonts/#SFUIDisplay-Thin</FontFamily>-->
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="Google Sans"></Setter>
+        <Setter Property="FontFamily" Value="QuickSand"></Setter>
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockBaseStyle">
-        <Setter Property="FontFamily" Value="Google Sans"></Setter>
+        <Setter Property="FontFamily" Value="QuickSand"></Setter>
     </Style>
 
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <!--<Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"></Style>
     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"></Style>
     <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource BaseStyle}"></Style>
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}"></Style>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockBaseStyle}"></Style>
-    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}"></Style>
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource BaseStyle}"></Style>-->
     <!-- EndRegion -->
     
     <!-- Region ListView -->
@@ -207,8 +260,8 @@
                     <Border CornerRadius="{Binding WindowCornerRadius}">
                         <Border.Background>
                             <LinearGradientBrush StartPoint="0.5 0" EndPoint="0.5 1">
-                                <GradientStop Color="#B95C7F" Offset="0.0"></GradientStop>
-                                <GradientStop Color="#503B5D" Offset="0.7"></GradientStop>
+                                <GradientStop Color="#f3e7e9" Offset="0.2"></GradientStop>
+                                <GradientStop Color="#e3eeff" Offset="0.7"></GradientStop>
                             </LinearGradientBrush>
                         </Border.Background>
                         <Grid>
@@ -222,7 +275,7 @@
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
-                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="White" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
+                                    <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="Black" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
                                 </Border>
                                 <Border Grid.Column="1" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
                                     <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
