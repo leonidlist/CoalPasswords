@@ -24,8 +24,6 @@ namespace CoalPasswords
             Login = login;
             Password = password;
             PasswordRecords = new Repository<IRecord>();
-            Name = "Bill";
-            LastName = "Gates";
         }
         public User(string login, string password, IList<IRecord> repository)
         {

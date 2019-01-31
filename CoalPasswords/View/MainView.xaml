@@ -210,65 +210,54 @@
         <!-- EndRegion -->
 
         <!-- Region PopupSettings -->
-        <Border Cursor="Hand" Grid.ColumnSpan="2" Width="{Binding ElementName=mWnd, Path=Width}" Height="{Binding ElementName=mWnd, Path=Height}"
-                Visibility="Hidden" Name="SettingsPopup">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseLeftButtonUp">
-                    <i:InvokeCommandAction Command="{Binding DataContext.ClosePopupSettingsCommand, RelativeSource={RelativeSource Mode=FindAncestor, 
-                                                         AncestorType={x:Type Window}}}"></i:InvokeCommandAction>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-            <Border.Background>
-                <SolidColorBrush Color="Black" Opacity=".5"></SolidColorBrush>
-            </Border.Background>
-            <Border VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5"
-                    Background="{StaticResource BackgroundColor}" Width="500" Height="500" Padding="15">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"></RowDefinition>
-                        <RowDefinition Height="1*"></RowDefinition>
-                        <RowDefinition Height="7*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15" VerticalAlignment="Center">
-                        <Ellipse Width="40" Height="40" Fill="Black" Margin="0 0 10 0"></Ellipse>
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{Binding CurrentUser.Name}"></TextBlock>
-                            <TextBlock Text="{Binding CurrentUser.LastName}"></TextBlock>
-                        </StackPanel>
+        <Border Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5"
+                Background="{StaticResource BackgroundColor}" Width="500" Height="500"
+                Padding="15" Name="SettingsPopup" Visibility="Hidden">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="7*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15" VerticalAlignment="Center">
+                    <Ellipse Width="40" Height="40" Fill="{StaticResource ForegroundColor}" Margin="0 0 10 0"></Ellipse>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Foreground="{StaticResource ForegroundColor}" Text="{Binding CurrentUser.Name}"></TextBlock>
+                        <TextBlock Foreground="{StaticResource ForegroundColor}" Text="{Binding CurrentUser.LastName}"></TextBlock>
                     </StackPanel>
-                    <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Style="{StaticResource FormButtonStyle}">Log Out</Button>
-                    <TextBlock Margin="15" VerticalAlignment="Center" Grid.Row="1">You have 27 password records. Thank You!</TextBlock>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Margin="15">
-                            <Label Margin="0 5">Color theme:</Label>
-                            <ComboBox SelectedIndex="0" Margin="0 5">
-                                <ComboBoxItem>Light</ComboBoxItem>
-                                <ComboBoxItem>Dark</ComboBoxItem>
-                            </ComboBox>
-                            <Label Margin="0 5">Accent color:</Label>
-                            <ComboBox SelectedIndex="0" Margin="0 5">
-                                <ComboBoxItem>Red</ComboBoxItem>
-                                <ComboBoxItem>Yellow</ComboBoxItem>
-                                <ComboBoxItem>Green</ComboBoxItem>
-                                <ComboBoxItem>Blue</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Margin="15">
-                            <Label Margin="0 5">Language:</Label>
-                            <ComboBox SelectedIndex="0" Margin="0 5">
-                                <ComboBoxItem>English</ComboBoxItem>
-                                <ComboBoxItem>Ukrainian</ComboBoxItem>
-                                <ComboBoxItem>Russian</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-                    </Grid>
-                    <!--<ComboBox SelectedIndex="0" Style="{DynamicResource MaterialDesignComboBox}">-->
+                </StackPanel>
+                <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Style="{StaticResource FormButtonStyle}">Log Out</Button>
+                <TextBlock Margin="15" VerticalAlignment="Center" Grid.Row="1" Foreground="{StaticResource ForegroundColor}">You have 27 password records. Thank You!</TextBlock>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="15">
+                        <Label Margin="0 5">Color theme:</Label>
+                        <ComboBox Foreground="{StaticResource ForegroundColor}" SelectedIndex="0" Margin="0 5">
+                            <ComboBoxItem>Light</ComboBoxItem>
+                            <ComboBoxItem>Dark</ComboBoxItem>
+                        </ComboBox>
+                        <Label Margin="0 5">Accent color:</Label>
+                        <ComboBox Foreground="{StaticResource ForegroundColor}" SelectedIndex="0" Margin="0 5">
+                            <ComboBoxItem>Red</ComboBoxItem>
+                            <ComboBoxItem>Yellow</ComboBoxItem>
+                            <ComboBoxItem>Green</ComboBoxItem>
+                            <ComboBoxItem>Blue</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="15">
+                        <Label Margin="0 5" Foreground="{StaticResource ForegroundColor}">Language:</Label>
+                        <ComboBox Foreground="{StaticResource ForegroundColor}" SelectedIndex="0" Margin="0 5">
+                            <ComboBoxItem>English</ComboBoxItem>
+                            <ComboBoxItem>Ukrainian</ComboBoxItem>
+                            <ComboBoxItem>Russian</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
                 </Grid>
-            </Border>
+                <!--<ComboBox SelectedIndex="0" Style="{DynamicResource MaterialDesignComboBox}">-->
+            </Grid>
         </Border>
         <!-- EndRegion -->
     </Grid>

@@ -48,7 +48,7 @@ namespace CoalPasswords
             ResourceDictionary material1 = new ResourceDictionary();
             material1.Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml");
             ResourceDictionary material2 = new ResourceDictionary();
-            material1.Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml");
+            material1.Source = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(themeName.Contains("Dark")?"Dark":"Light")}.xaml");
             Application.Current.Resources.MergedDictionaries.Add(theme);
             Application.Current.Resources.MergedDictionaries.Add(material1);
             Application.Current.Resources.MergedDictionaries.Add(material2);
