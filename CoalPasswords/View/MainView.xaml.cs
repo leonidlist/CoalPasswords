@@ -22,7 +22,7 @@ namespace CoalPasswords
         public MainView()
         {
             InitializeComponent();
-            DataContext = new WindowViewModel(this);
+            //DataContext = new WindowViewModel(this);
         }
     }
 }

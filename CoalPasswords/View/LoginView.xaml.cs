@@ -12,7 +12,7 @@ namespace CoalPasswords
         public LoginView()
         {
             InitializeComponent();
-            DataContext = new LoginViewModel(this);
+            //DataContext = new LoginViewModel(this);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:cal="http://www.caliburnproject.org"
                     xmlns:local="clr-namespace:CoalPasswords">
 
     <!-- Region Colors -->
@@ -270,7 +271,16 @@
                                     <Label Height="25" VerticalAlignment="Center" FontSize="13" HorizontalAlignment="Left" Margin="20 0" Foreground="{StaticResource ForegroundColor}" VerticalContentAlignment="Center" Content="{Binding WindowTitle}"></Label>
                                 </Border>
                                 <Border Grid.Column="1" Background="Transparent" CornerRadius="{Binding WindowCornerRadius}">
-                                    <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True" Command="{Binding CloseWindowCommand}" Cursor="Hand"></Button>
+                                    <Button Style="{StaticResource CloseWindowButton}" WindowChrome.IsHitTestVisibleInChrome="True"
+                                            Cursor="Hand">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <cal:ActionMessage MethodName="Close">
+                                                    <cal:Parameter Value="{Binding ElementName=LogInPage}"></cal:Parameter>
+                                                </cal:ActionMessage>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Button>
                                 </Border>
                             </Grid>
                             <Grid Grid.Row="1">
