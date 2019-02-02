@@ -15,15 +15,14 @@ namespace CoalPasswords
 {
     class MainViewModel : WindowViewModel, INotifyPropertyChanged
     {
-        /// <summary>
-        /// Текущий пользователь
-        /// </summary>
+        #region Private members
         private User _currentUser;
-        private Visibility _recordPopupVisibility;
-        /// <summary>
-        /// Выбранный элемент на View
-        /// </summary>
+        private Visibility _recordPopupVisibility = Visibility.Hidden;
+        private Visibility _addRecordPopupVisibility = Visibility.Hidden;
+        #endregion
+
         public IRecord SelectedPassRecord { get; set; }
+        public IRecord BufferRecord { get; set; }
         public Visibility RecordPopupVisibility
         {
             get => _recordPopupVisibility;
@@ -33,37 +32,24 @@ namespace CoalPasswords
                 NotifyOfPropertyChange(() => RecordPopupVisibility);
             }
         }
-        /// <summary>
-        /// Команда открытия всплывающего окна о добавлении записи
-        /// </summary>
+
+        public Visibility AddRecordPopupVisibility
+        {
+            get => _addRecordPopupVisibility;
+            set
+            {
+                _addRecordPopupVisibility = value;
+                NotifyOfPropertyChange(() => AddRecordPopupVisibility);
+            }
+        }
+
         public ICommand AddTestCommand { get; set; }
-        /// <summary>
-        /// Команда добавления новой записи
-        /// </summary>
         public ICommand AddPasswordRecordCommand { get; set; }
-        /// <summary>
-        /// Команда закрытия всплывающего окна о добавлении записи
-        /// </summary>
         public ICommand ClosePopupAddRecordCommand { get; set; }
-        /// <summary>
-        /// Команда открытия всплывающего окна для просмотра записи пароля
-        /// </summary>
         public ICommand OpenPopupShowRecordCommand { get; set; }
-        /// <summary>
-        /// Команда закрытия всплывающего окна для просмотра записи пароля
-        /// </summary>
         public ICommand ClosePopupShowRecordCommand { get; set; }
-        /// <summary>
-        /// Команда открытия всплывающего окна настроек
-        /// </summary>
         public ICommand OpenPopupSettingsCommand { get; set; }
-        /// <summary>
-        /// Команда закрытия всплывающего окна настроек
-        /// </summary>
         public ICommand ClosePopupSettingsCommand { get; set; }
-        /// <summary>
-        /// Коллекция сохраненных паролей текущего пользователя
-        /// </summary>
         private ObservableCollection<IRecord> _passRecords;
         public ObservableCollection<IRecord> PassRecords { get => _passRecords; set { _passRecords = value; /*Notify();*/ } }
         public User CurrentUser
@@ -79,53 +65,47 @@ namespace CoalPasswords
         {
             CurrentUser = currentUser;
             PassRecords = new ObservableCollection<IRecord>(_currentUser.PasswordRecords.GetAll());
+            BufferRecord = new PasswordRecord();
             //AddTestCommand = new RelayCommand(x => window.AddRecordGrid.Visibility = Visibility.Visible);
-            //ClosePopupAddRecordCommand = new RelayCommand(x => window.AddRecordGrid.Visibility = Visibility.Hidden);
-            //OpenPopupShowRecordCommand = new RelayCommand(OpenPopup);
-            //ClosePopupShowRecordCommand = new RelayCommand(x => window.ShowRecord.Visibility = Visibility.Hidden);
-            //AddPasswordRecordCommand = new RelayCommand(AddPasswordRecord);
             //OpenPopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Visible);
             //ClosePopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Hidden);
         }
-        private void AddPasswordRecord(object param = null)
+        public void AddPasswordRecord()
         {
-            //Random rnd = new Random();
-            //MainView curr = _mainWindow as MainView;
-            //PasswordRecord tmp = new PasswordRecord
-            //{
-            //    Title = curr.titleAdd.Text,
-            //    Username = curr.usernameAdd.Text,
-            //    Email = curr.emailAdd.Text,
-            //    Password = curr.passwordAdd.Text,
-            //    Website = curr.websiteAdd.Text,
-            //    Category = curr.categoryAdd.Text,
-            //    ImageUrl = GetImageUrl(curr.websiteAdd.Text),
-            //    CardColor = Pallete.Colors[rnd.Next(Pallete.Colors.Count)]
-            //};
-            //PassRecords.Add(tmp);
-            //curr.titleAdd.Text = "";
-            //curr.usernameAdd.Text = "";
-            //curr.emailAdd.Text = "";
-            //curr.passwordAdd.Text = "";
-            //curr.websiteAdd.Text = "";
-            //curr.categoryAdd.Text = "";
-            //(_mainWindow as MainView).AddRecordGrid.Visibility = Visibility.Hidden;
-            //DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
-            //dbc.AddPasswordRecord(tmp, CurrentUser);
+            Random rnd = new Random();
+            BufferRecord.ImageUrl = GetImageUrl(BufferRecord.Website);
+            BufferRecord.CardColor = Pallete.Colors[rnd.Next(Pallete.Colors.Count)];
+            PassRecords.Add(BufferRecord);
+            
+            DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
+            dbc.AddPasswordRecord(BufferRecord, CurrentUser);
         }
 
         public void ToggleRecordPopupVisibility()
         {
-            //(_mainWindow as MainView).ShowRecord.Visibility = Visibility.Visible;
             if (RecordPopupVisibility == Visibility.Hidden)
                 RecordPopupVisibility = Visibility.Visible;
             else
                 RecordPopupVisibility = Visibility.Hidden;
         }
 
+        public void ToggleAddRecordVisibility()
+        {
+            if (AddRecordPopupVisibility == Visibility.Hidden)
+                AddRecordPopupVisibility = Visibility.Visible;
+            else
+                AddRecordPopupVisibility = Visibility.Hidden;
+        }
+
         private string GetImageUrl(string url)
         {
             return $"http://{url}/favicon.ico";
+        }
+
+        public void Close(object param)
+        {
+            if (param is Window wnd)
+                wnd.Close();
         }
     }
 }
