@@ -17,8 +17,10 @@ namespace CoalPasswords
     {
         #region Private members
         private User _currentUser;
+        private ObservableCollection<IRecord> _passRecords;
         private Visibility _recordPopupVisibility = Visibility.Hidden;
         private Visibility _addRecordPopupVisibility = Visibility.Hidden;
+        private Visibility _settingsPopupVisibility = Visibility.Hidden;
         #endregion
 
         public IRecord SelectedPassRecord { get; set; }
@@ -43,22 +45,31 @@ namespace CoalPasswords
             }
         }
 
-        public ICommand AddTestCommand { get; set; }
-        public ICommand AddPasswordRecordCommand { get; set; }
-        public ICommand ClosePopupAddRecordCommand { get; set; }
-        public ICommand OpenPopupShowRecordCommand { get; set; }
-        public ICommand ClosePopupShowRecordCommand { get; set; }
-        public ICommand OpenPopupSettingsCommand { get; set; }
-        public ICommand ClosePopupSettingsCommand { get; set; }
-        private ObservableCollection<IRecord> _passRecords;
-        public ObservableCollection<IRecord> PassRecords { get => _passRecords; set { _passRecords = value; /*Notify();*/ } }
+        public Visibility SettingsPopupVisibility
+        {
+            get => _settingsPopupVisibility;
+            set
+            {
+                _settingsPopupVisibility = value;
+                NotifyOfPropertyChange(() => SettingsPopupVisibility);
+            }
+        }
+        public ObservableCollection<IRecord> PassRecords
+        {
+            get => _passRecords;
+            set
+            {
+                _passRecords = value;
+                NotifyOfPropertyChange(() => PassRecords);
+            }
+        }
         public User CurrentUser
         {
             get => _currentUser;
             set
             {
                 _currentUser = value;
-                //Notify();
+                NotifyOfPropertyChange(() => CurrentUser);
             }
         }
         public MainViewModel(User currentUser)
@@ -66,9 +77,6 @@ namespace CoalPasswords
             CurrentUser = currentUser;
             PassRecords = new ObservableCollection<IRecord>(_currentUser.PasswordRecords.GetAll());
             BufferRecord = new PasswordRecord();
-            //AddTestCommand = new RelayCommand(x => window.AddRecordGrid.Visibility = Visibility.Visible);
-            //OpenPopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Visible);
-            //ClosePopupSettingsCommand = new RelayCommand(x => window.SettingsPopup.Visibility = Visibility.Hidden);
         }
         public void AddPasswordRecord()
         {
@@ -79,6 +87,14 @@ namespace CoalPasswords
             
             DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
             dbc.AddPasswordRecord(BufferRecord, CurrentUser);
+        }
+
+        public void ToggleSettingsPopupVisibility()
+        {
+            if (SettingsPopupVisibility == Visibility.Hidden)
+                SettingsPopupVisibility = Visibility.Visible;
+            else
+                SettingsPopupVisibility = Visibility.Hidden;
         }
 
         public void ToggleRecordPopupVisibility()

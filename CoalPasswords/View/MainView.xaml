@@ -66,7 +66,7 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Width="30" Height="30" Fill="{StaticResource ForegroundColor}"></Ellipse>
                     <TextBlock Foreground="{StaticResource ForegroundColor}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0" Text="{Binding CurrentUser.FullNameString}"></TextBlock>
-                    <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding OpenPopupSettingsCommand}">
+                    <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" cal:Message.Attach="ToggleSettingsPopupVisibility">
                         <Button.Resources>
                             <Style TargetType="Button">
                                 <Setter Property="Template">
@@ -221,7 +221,7 @@
         <!-- Region PopupSettings -->
         <Border Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5"
                 Background="{StaticResource BackgroundColor}" Width="500" Height="500"
-                Padding="15" Name="SettingsPopup" Visibility="Hidden">
+                Padding="15" Name="SettingsPopup" Visibility="{Binding SettingsPopupVisibility}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"></RowDefinition>
