@@ -74,8 +74,15 @@ namespace CoalPasswords
             material.Source = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(themeName.Contains("Dark")?"Dark":"Light")}.xaml");
             Application.Current.Resources.MergedDictionaries.Add(material);
         }
+        private void SetLanguageOnStartup(string language)
+        {
+            ResourceDictionary lang = new ResourceDictionary();
+            lang.Source = new Uri($"pack://application:,,,/Languages/{language}.xaml", UriKind.Absolute);
+            Application.Current.Resources.MergedDictionaries.Add(lang);
+        }
         public void Deserialize()
         {
+            SetLanguageOnStartup("English");
             SetThemeOnStartup("LightColors");
             DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
             UsersRepository = dbc.GetUsers();

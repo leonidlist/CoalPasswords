@@ -38,19 +38,26 @@
                         <RowDefinition Height="8*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">
-                            All Passwords
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mAllPasswordsButton}">
                         </Button>
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">
-                            Credit Cards
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mCreditCardsButton}">
                         </Button>
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Center">
-                        <Label Background="Transparent" Style="{StaticResource SideMenuLabel}" FontWeight="Bold">CATEGORIES</Label>
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">Mail</Button>
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">Shopping</Button>
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">Work</Button>
-                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}">Entertainment</Button>
+                        <Label Background="Transparent" Style="{StaticResource SideMenuLabel}" FontWeight="Bold"
+                               Content="{DynamicResource mCategoriesString}"></Label>
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mMailButton}"></Button>
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mShoppingButton}"></Button>
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mWorkButton}"></Button>
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mEntertainmentButton}"></Button>
+                        <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
+                                Content="{DynamicResource mOtherButton}"></Button>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -235,21 +242,23 @@
                         <TextBlock Foreground="{DynamicResource ForegroundColor}" Text="{Binding CurrentUser.LastName}"></TextBlock>
                     </StackPanel>
                 </StackPanel>
-                <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Style="{StaticResource FormButtonStyle}">Log Out</Button>
-                <TextBlock Margin="15" VerticalAlignment="Center" Grid.Row="1" Foreground="{DynamicResource ForegroundColor}">You have 27 password records. Thank You!</TextBlock>
+                <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="15" Style="{StaticResource FormButtonStyle}"
+                        Content="{DynamicResource msLogOutButton}"></Button>
+                <TextBlock Margin="15" VerticalAlignment="Center" Grid.Row="1" Foreground="{DynamicResource ForegroundColor}"
+                           Text="{DynamicResource msThanksString}"></TextBlock>
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Margin="15">
-                        <Label Margin="0 5">Color theme:</Label>
+                        <Label Margin="0 5" Content="{DynamicResource msColorThemeString}"></Label>
                         <ComboBox Foreground="{DynamicResource ForegroundColor}" SelectedIndex="{Binding SelectedThemeIndex}" Margin="0 5">
-                            <ComboBoxItem>Light</ComboBoxItem>
-                            <ComboBoxItem>Dark</ComboBoxItem>
-                            <ComboBoxItem>Auto</ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource msLightCombo}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource msDarkCombo}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource msAutoCombo}"></ComboBoxItem>
                         </ComboBox>
-                        <Label Margin="0 5">Accent color:</Label>
+                        <Label Margin="0 5" Content="{DynamicResource msAccentColorString}"></Label>
                         <ComboBox Foreground="{DynamicResource ForegroundColor}" SelectedIndex="0" Margin="0 5">
                             <ComboBoxItem>Red</ComboBoxItem>
                             <ComboBoxItem>Yellow</ComboBoxItem>
@@ -258,11 +267,12 @@
                         </ComboBox>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="15">
-                        <Label Margin="0 5" Foreground="{DynamicResource ForegroundColor}">Language:</Label>
-                        <ComboBox Foreground="{DynamicResource ForegroundColor}" SelectedIndex="0" Margin="0 5" Name="ThemeComboBox">
-                            <ComboBoxItem>English</ComboBoxItem>
-                            <ComboBoxItem>Ukrainian</ComboBoxItem>
-                            <ComboBoxItem>Russian</ComboBoxItem>
+                        <Label Margin="0 5" Foreground="{DynamicResource ForegroundColor}"
+                               Content="{DynamicResource msLanguageString}"></Label>
+                        <ComboBox Foreground="{DynamicResource ForegroundColor}" SelectedIndex="{Binding SelectedLanguageIndex}" Margin="0 5" Name="ThemeComboBox">
+                            <ComboBoxItem Content="{DynamicResource msEnglishCombo}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource msRussianCombo}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource msUkrainianCombo}"></ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                 </Grid>

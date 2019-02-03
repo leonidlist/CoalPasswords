@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CoalPasswords.Languages"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- Region LoginWindow -->
+    <sys:String x:Key="lWelcomeString">Welcome back!</sys:String>
+    <sys:String x:Key="lEmailString">Email:</sys:String>
+    <sys:String x:Key="lPasswordString">Password:</sys:String>
+    <sys:String x:Key="lSignInButton">Sign In</sys:String>
+    <sys:String x:Key="lDontHaveAccountString">Don't have an account?</sys:String>
+    <sys:String x:Key="lSignUpButton">Sign Up</sys:String>
+    <!-- EndRegion -->
+
+    <!-- Region MainWindow -->
+    <sys:String x:Key="mAllPasswordsButton">All Passwords</sys:String>
+    <sys:String x:Key="mCreditCardsButton">Credit Cards</sys:String>
+    <sys:String x:Key="mCategoriesString">CATEGORIES</sys:String>
+    <sys:String x:Key="mMailButton">Mail</sys:String>
+    <sys:String x:Key="mShoppingButton">Shopping</sys:String>
+    <sys:String x:Key="mWorkButton">Work</sys:String>
+    <sys:String x:Key="mEntertainmentButton">Entertainment</sys:String>
+    <sys:String x:Key="mOtherButton">Other</sys:String>
+    <!-- EndRegion -->
+
+    <!-- Region MainWindow.Settings -->
+    <sys:String x:Key="msLogOutButton">Log Out</sys:String>
+    <sys:String x:Key="msThanksString">You have 27 password records. Thank You!</sys:String>
+    <sys:String x:Key="msColorThemeString">Color theme:</sys:String>
+    <sys:String x:Key="msLightCombo">Light</sys:String>
+    <sys:String x:Key="msDarkCombo">Dark</sys:String>
+    <sys:String x:Key="msAutoCombo">Auto</sys:String>
+    <sys:String x:Key="msAccentColorString">Accent color:</sys:String>
+    <sys:String x:Key="msLanguageString">Language:</sys:String>
+    <sys:String x:Key="msEnglishCombo">English</sys:String>
+    <sys:String x:Key="msRussianCombo">Russian</sys:String>
+    <sys:String x:Key="msUkrainianCombo">Ukrainian</sys:String>
+    <!-- EndRegion -->
+</ResourceDictionary>

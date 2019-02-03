@@ -58,18 +58,22 @@
                     <Label Margin="40 0" FontFamily="QuickSand" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource ForegroundColor}">Passwords</Label>
                 </StackPanel>
             </StackPanel>
-            <TextBlock Margin="0 30" FontFamily="QuickSand" HorizontalAlignment="Center" FontSize="14" Foreground="{DynamicResource ForegroundColor}">Welcome back!</TextBlock>
+            <TextBlock Margin="0 30" FontFamily="QuickSand" HorizontalAlignment="Center"
+                       FontSize="14" Foreground="{DynamicResource ForegroundColor}"
+                       Text="{DynamicResource lWelcomeString}"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <Label HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}">Email:</Label>
+            <Label HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}"
+                   Content="{DynamicResource lEmailString}"></Label>
             <TextBox Margin="50 20" HorizontalContentAlignment="Center" Text="{Binding EnteredLogin}"
                      ToolTip="Email" Style="{DynamicResource MaterialDesignTextBox}"
                      FontFamily="QuickSand" Cursor="IBeam" Foreground="{DynamicResource ForegroundColor}"></TextBox>
-            <Label HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}">Password:</Label>
+            <Label HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}"
+                   Content="{DynamicResource lPasswordString}"></Label>
             <PasswordBox HorizontalContentAlignment="Center" Name="PasswordField" Margin="50 20"
                          ToolTip="Password" Style="{DynamicResource MaterialDesignPasswordBox}"
                          FontFamily="QuickSand" Cursor="IBeam" Foreground="{DynamicResource ForegroundColor}"></PasswordBox>
-            <Button Margin="50 15" Style="{DynamicResource LogInButton}" Content="Sign In">
+            <Button Margin="50 15" Style="{DynamicResource LogInButton}" Content="{DynamicResource lSignInButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <cal:ActionMessage MethodName="SignIn">
@@ -79,8 +83,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-            <Label Margin="0 10" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}">Don't have an account?</Label>
-            <Button Style="{DynamicResource SignUpButton}" Content="Sign Up">
+            <Label Margin="0 10" HorizontalAlignment="Center" Foreground="{DynamicResource ForegroundColor}"
+                   Content="{DynamicResource lDontHaveAccountString}"></Label>
+            <Button Style="{DynamicResource SignUpButton}" Content="{DynamicResource lSignUpButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
                         <cal:ActionMessage MethodName="SignUp">

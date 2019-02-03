@@ -18,6 +18,7 @@ namespace CoalPasswords
     {
         #region Private members
         private int _selectedThemeIndex = 0;
+        private int _selectedLanguageIndex = 0;
         private User _currentUser;
         private ObservableCollection<IRecord> _passRecords;
         private Visibility _recordPopupVisibility = Visibility.Hidden;
@@ -72,6 +73,7 @@ namespace CoalPasswords
             set
             {
                 _currentUser = value;
+
                 NotifyOfPropertyChange(() => CurrentUser);
             }
         }
@@ -83,6 +85,17 @@ namespace CoalPasswords
                 _selectedThemeIndex = value;
                 ChangeTheme();
                 NotifyOfPropertyChange(() => SelectedThemeIndex);
+            }
+        }
+
+        public int SelectedLanguageIndex
+        {
+            get => _selectedLanguageIndex;
+            set
+            {
+                _selectedLanguageIndex = value;
+                ChangeLanguage();
+                NotifyOfPropertyChange(() => SelectedLanguageIndex);
             }
         }
         #endregion
@@ -140,7 +153,7 @@ namespace CoalPasswords
                 wnd.Close();
         }
 
-        public void ChangeTheme()
+        private void ChangeTheme()
         {
             Thread spectator = null;
             string themeName;
@@ -169,6 +182,27 @@ namespace CoalPasswords
             return;
         }
 
+        private void ChangeLanguage()
+        {
+            string language;
+            switch (_selectedLanguageIndex)
+            {
+                case 0:
+                    language = "English";
+                    break;
+                case 1:
+                    language = "Russian";
+                    break;
+                case 2:
+                    language = "Ukrainian";
+                    break;
+                default:
+                    language = "English";
+                    break;
+            }
+            ReplaceLanguageResource(language);
+        }
+
         private void SpectateForThemeChanging()
         {
             while (true)
@@ -195,6 +229,14 @@ namespace CoalPasswords
             ResourceDictionary material = new ResourceDictionary();
             material.Source = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(themeName.Contains("Dark") ? "Dark" : "Light")}.xaml");
             Application.Current.Resources.MergedDictionaries.Add(material);
+        }
+
+        public void ReplaceLanguageResource(string language)
+        {
+            ResourceDictionary lang = new ResourceDictionary();
+            lang.Source = new Uri($"pack://application:,,,/Languages/{language}.xaml", UriKind.Absolute);
+            Application.Current.Resources.MergedDictionaries.Insert(Application.Current.Resources.MergedDictionaries.Count - 3, lang);
+            Application.Current.Resources.MergedDictionaries.RemoveAt(Application.Current.Resources.MergedDictionaries.Count - 3);
         }
     }
 }
