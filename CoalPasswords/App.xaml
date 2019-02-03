@@ -8,9 +8,8 @@
                 <ResourceDictionary>
                     <local:PrimaryBootstrapper x:Key="bootstraper"></local:PrimaryBootstrapper>
                 </ResourceDictionary>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="Styles/LightTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/Styles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

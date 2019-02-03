@@ -11,17 +11,26 @@ namespace CoalPasswords
 {
     class LoginViewModel:WindowViewModel
     {
+        #region Private members
+        private IWindowManager windowManager;
         private IRepository<User> UsersRepository { get; set; }
         private User _signedInUser;
-        private MainView _passwordsMainWindow;
-        private IWindowManager windowManager;
         private string _enteringStatusString;
         private string EnteredPassword { get; set; }
-        public ICommand AddUserCommand { get; set; }
-        public ICommand SignInCommand { get; set; }
-        public ICommand OpenMainWindowCommand { get; set; }
-        public ICommand SerializingCommand { get; set; }
+        #endregion
+
+        #region Properties
         public string EnteredLogin { get; set; }
+        public string EnteringStatusString
+        {
+            get => _enteringStatusString;
+            set
+            {
+                _enteringStatusString = value;
+                NotifyOfPropertyChange(() => EnteringStatusString);
+            }
+        }
+        #endregion
 
         public void SignUp(object param)
         {
@@ -48,15 +57,7 @@ namespace CoalPasswords
             EnteringStatusString = "Error in Users repository.";
             throw new Exception("Users repositpry not List<User>");
         }
-        public string EnteringStatusString
-        {
-            get => _enteringStatusString;
-            set
-            {
-                _enteringStatusString = value;
-                NotifyOfPropertyChange(() => EnteringStatusString);
-            }
-        }
+        
 
         public LoginViewModel(IWindowManager windowManager) : base()
         {
@@ -65,20 +66,17 @@ namespace CoalPasswords
 
         private void SetThemeOnStartup(string themeName)
         {
-            //Application.Current.Resources.Clear();
-            //ResourceDictionary theme = new ResourceDictionary();
-            //theme.Source = new Uri($"pack://application:,,,/Styles/{themeName}.xaml", UriKind.Absolute);
-            //ResourceDictionary material1 = new ResourceDictionary();
-            //material1.Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml");
-            //ResourceDictionary material2 = new ResourceDictionary();
-            //material1.Source = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(themeName.Contains("Dark")?"Dark":"Light")}.xaml");
-            //Application.Current.Resources.MergedDictionaries.Add(theme);
-            //Application.Current.Resources.MergedDictionaries.Add(material1);
-            //Application.Current.Resources.MergedDictionaries.Add(material2);
+            ResourceDictionary color = new ResourceDictionary();
+            color.Source = new Uri($"pack://application:,,,/Styles/{themeName}.xaml", UriKind.Absolute);
+            Application.Current.Resources.MergedDictionaries.Add(color);
+
+            ResourceDictionary material = new ResourceDictionary();
+            material.Source = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{(themeName.Contains("Dark")?"Dark":"Light")}.xaml");
+            Application.Current.Resources.MergedDictionaries.Add(material);
         }
         public void Deserialize()
         {
-            SetThemeOnStartup("DarkTheme");
+            SetThemeOnStartup("LightColors");
             DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
             UsersRepository = dbc.GetUsers();
         }
