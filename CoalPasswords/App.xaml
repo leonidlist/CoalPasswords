@@ -1,14 +1,16 @@
 ﻿<Application x:Class="CoalPasswords.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CoalPasswords"
-             StartupUri="View/LoginView.xaml">
+             xmlns:local="clr-namespace:CoalPasswords">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:PrimaryBootstrapper x:Key="bootstraper"></local:PrimaryBootstrapper>
+                </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="Styles/DarkTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/LightTheme.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

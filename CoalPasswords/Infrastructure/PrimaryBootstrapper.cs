@@ -8,20 +8,22 @@ using Caliburn.Micro;
 
 namespace CoalPasswords
 {
-    class MyBootstrapper:BootstrapperBase
+    class PrimaryBootstrapper:BootstrapperBase
     {
-        private SimpleContainer _container = new SimpleContainer();
-        public MyBootstrapper()
+        private SimpleContainer _container;
+        public PrimaryBootstrapper()
         {
             Initialize();
         }
 
         protected override void Configure()
         {
+            _container = new SimpleContainer();
+
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
-            _container.Singleton<LoginViewModel, LoginViewModel>();
-            _container.Singleton<MainViewModel, MainViewModel>();
+            _container.PerRequest<LoginViewModel, LoginViewModel>();
+            _container.PerRequest<MainViewModel, MainViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
@@ -29,14 +31,14 @@ namespace CoalPasswords
             return _container.GetInstance(service, key);
         }
 
-        protected override void BuildUp(object instance)
-        {
-            _container.BuildUp(instance);
-        }
-
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
             return _container.GetAllInstances(service);
+        }
+
+        protected override void BuildUp(object instance)
+        {
+            _container.BuildUp(instance);
         }
 
         protected override void OnStartup(object sender, StartupEventArgs e)

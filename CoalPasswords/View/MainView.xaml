@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:CoalPasswords"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords"
         Style="{DynamicResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen">
@@ -65,7 +66,7 @@
                     </Grid.ColumnDefinitions>
                     <Ellipse Width="30" Height="30" Fill="{StaticResource ForegroundColor}"></Ellipse>
                     <TextBlock Foreground="{StaticResource ForegroundColor}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="15 0" Text="{Binding CurrentUser.FullNameString}"></TextBlock>
-                    <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" Command="{Binding OpenPopupSettingsCommand}">
+                    <Button Cursor="Hand" Width="30" Height="30" Grid.Column="2" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" cal:Message.Attach="ToggleSettingsPopupVisibility">
                         <Button.Resources>
                             <Style TargetType="Button">
                                 <Setter Property="Template">
@@ -113,7 +114,9 @@
         <!-- EndRegion -->
         
         <!-- Region AddRecordButton -->
-        <Button Grid.Column="1" Width="40" Height="40" Style="{StaticResource AddRecordButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15 15" Command="{Binding AddTestCommand}">
+        <Button Grid.Column="1" Width="40" Height="40" Style="{StaticResource AddRecordButton}"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="15 15"
+                cal:Message.Attach="ToggleAddRecordVisibility">
             <Button.Content>
                 <Viewbox Width="20" Height="20">
                     <Canvas Width="24" Height="24">
@@ -126,13 +129,13 @@
 
         <!-- Region PopupWindowAddRecord -->
         <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}"
-                Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="AddRecordGrid">
+                Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding AddRecordPopupVisibility}" Name="AddRecordGrid">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
             </Border.Effect>
             <StackPanel>
                 <Label Style="{StaticResource FormLabelStyle}">Title</Label>
-                <TextBox Name="titleAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="titleAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Title}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -140,7 +143,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Label Style="{StaticResource FormLabelStyle}">Username</Label>
-                <TextBox Name="usernameAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="usernameAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Username}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -148,7 +151,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Label Style="{StaticResource FormLabelStyle}">Email</Label>
-                <TextBox Name="emailAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="emailAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Email}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -156,7 +159,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Label Style="{StaticResource FormLabelStyle}">Password</Label>
-                <TextBox Name="passwordAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="passwordAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Password}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -164,7 +167,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Label Style="{StaticResource FormLabelStyle}">Website</Label>
-                <TextBox Name="websiteAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="websiteAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Website}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -172,7 +175,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <Label Style="{StaticResource FormLabelStyle}">Category</Label>
-                <TextBox Name="categoryAdd" Style="{StaticResource FormTextBoxStyle}">
+                <TextBox Name="categoryAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Category}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -180,7 +183,13 @@
                     </TextBox.Resources>
                 </TextBox>
                 <UniformGrid Columns="2" Rows="1" Margin="5 7">
-                    <Button Command="{Binding AddPasswordRecordCommand}" Style="{StaticResource FormButtonStyle}">Add</Button>
+                    <Button Style="{StaticResource FormButtonStyle}" Content="Add">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AddPasswordRecord"></cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
                     <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource FormButtonStyle}">Close</Button>
                 </UniformGrid>
             </StackPanel>
@@ -189,7 +198,7 @@
         
         <!-- Region PopupWindowShowRecord -->
         <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{StaticResource BackgroundColor}"
-                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Name="ShowRecord">
+                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding RecordPopupVisibility}" Name="ShowRecord">
             <StackPanel>
                 <Label>Title</Label>
                 <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
@@ -212,7 +221,7 @@
         <!-- Region PopupSettings -->
         <Border Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="5"
                 Background="{StaticResource BackgroundColor}" Width="500" Height="500"
-                Padding="15" Name="SettingsPopup" Visibility="Hidden">
+                Padding="15" Name="SettingsPopup" Visibility="{Binding SettingsPopupVisibility}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"></RowDefinition>
