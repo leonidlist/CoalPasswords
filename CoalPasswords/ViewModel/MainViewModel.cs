@@ -169,6 +169,17 @@ namespace CoalPasswords
             dbc.UpdatePasswordRecord(record);
         }
 
+        public void AllPasswordsButton()
+        {
+            SearchString = String.Empty;
+        }
+
+        public void SortByCategory(int categoryId)
+        {
+            SearchString = String.Empty;
+            BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords.Where(x => x.Category == categoryId));
+        }
+
         public void ToggleSettingsPopupVisibility()
         {
             if (SettingsPopupVisibility == Visibility.Hidden)

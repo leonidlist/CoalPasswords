@@ -37,13 +37,23 @@
                 </Border.Effect>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"></RowDefinition>
-                        <RowDefinition Height="8*"></RowDefinition>
+                        <RowDefinition Height="3*"></RowDefinition>
+                        <RowDefinition Height="7*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
-                        <TextBox Foreground="{DynamicResource ForegroundColor}" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" MinWidth="60"></TextBox>
+                        <TextBox BorderThickness="0" Background="{DynamicResource AccentColor}"
+                                 Foreground="{DynamicResource ForegroundColor}" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Opacity=".7"
+                                 Height="30" FontSize="12" Margin="0 0 0 20">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"></Setter>
+                                </Style>
+                            </TextBox.Resources>
+                            <materialDesign:HintAssist.Hint>Search...</materialDesign:HintAssist.Hint>
+                        </TextBox>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mAllPasswordsButton}">
+                                Content="{DynamicResource mAllPasswordsButton}" cal:Message.Attach="AllPasswordsButton">
                         </Button>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
                                 Content="{DynamicResource mCreditCardsButton}">
@@ -51,17 +61,58 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Center">
                         <Label Background="Transparent" Style="{StaticResource SideMenuLabel}" FontWeight="Bold"
-                               Content="{DynamicResource mCategoriesString}"></Label>
+                               Content="{DynamicResource mCategoriesString}">
+                        </Label>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mMailButton}"></Button>
+                                Content="{DynamicResource mMailButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="SortByCategory">
+                                        <cal:Parameter Value="0"></cal:Parameter>
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mShoppingButton}"></Button>
+                                Content="{DynamicResource mShoppingButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="SortByCategory">
+                                        <cal:Parameter Value="1"></cal:Parameter>
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mWorkButton}"></Button>
+                                Content="{DynamicResource mWorkButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="SortByCategory">
+                                        <cal:Parameter Value="2"></cal:Parameter>
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mEntertainmentButton}"></Button>
+                                Content="{DynamicResource mEntertainmentButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="SortByCategory">
+                                        <cal:Parameter Value="3"></cal:Parameter>
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
-                                Content="{DynamicResource mOtherButton}"></Button>
+                                Content="{DynamicResource mOtherButton}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="SortByCategory">
+                                        <cal:Parameter Value="4"></cal:Parameter>
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </Border>
