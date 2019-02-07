@@ -36,4 +36,15 @@
     <sys:String x:Key="msRussianCombo">Russian</sys:String>
     <sys:String x:Key="msUkrainianCombo">Ukrainian</sys:String>
     <!-- EndRegion -->
+    
+    <!-- Region ShowAndAddRecord -->
+    <sys:String x:Key="msaTitle">Title</sys:String>
+    <sys:String x:Key="msaUsername">Username</sys:String>
+    <sys:String x:Key="msaEmail">Email</sys:String>
+    <sys:String x:Key="msaPassword">Password</sys:String>
+    <sys:String x:Key="msaWebsite">Website</sys:String>
+    <sys:String x:Key="msaCategory">Category</sys:String>
+    <!-- EndRegion -->
+
+    <sys:String x:Key="msysSearchString">Search...</sys:String>
 </ResourceDictionary>

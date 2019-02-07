@@ -42,8 +42,8 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
                         <TextBox BorderThickness="0" Background="{DynamicResource AccentColor}"
-                                 Foreground="{DynamicResource ForegroundColor}" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
-                                 Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Opacity=".7"
+                                 Foreground="#30333A" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
+                                 Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Opacity=".9"
                                  Height="30" FontSize="12" Margin="0 0 0 20">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
@@ -193,47 +193,55 @@
         <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{DynamicResource BackgroundColor}"
                 Width="300" Height="460" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding AddRecordPopupVisibility}" Name="AddRecordGrid">
             <Grid>
+                <Ellipse Fill="#FF534A" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Width="15" Height="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseUp">
+                            <cal:ActionMessage MethodName="ToggleAddRecordVisibility"></cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Ellipse.Effect>
+                        <DropShadowEffect BlurRadius="20" Opacity=".6" Direction="270" ShadowDepth="1"></DropShadowEffect>
+                    </Ellipse.Effect>
+                </Ellipse>
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Title:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaTitle}"></Label>
                         <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Title}"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Username:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaUsername}"></Label>
                         <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Username}"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Email:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaEmail}"></Label>
                         <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Email}"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Password:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaPassword}"></Label>
                         <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Password}"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Website:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaWebsite}"></Label>
                         <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Website}"></TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Category:</Label>
-                        <ComboBox MinWidth="100" SelectedIndex="{Binding SelectedCategoryIndex}">
-                            <ComboBoxItem>Mail</ComboBoxItem>
-                            <ComboBoxItem>Shopping</ComboBoxItem>
-                            <ComboBoxItem>Work</ComboBoxItem>
-                            <ComboBoxItem>Entertainment</ComboBoxItem>
-                            <ComboBoxItem>Other</ComboBoxItem>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Content="{DynamicResource msaCategory}"></Label>
+                        <ComboBox MinWidth="100" SelectedIndex="{Binding SelectedCategoryIndex}" Foreground="{DynamicResource ForegroundColor}">
+                            <ComboBoxItem Content="{DynamicResource mMailButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mShoppingButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mWorkButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mEntertainmentButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mOtherButton}"></ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource LogInButton}" Content="Add">
+                    <Button Style="{StaticResource ConfirmAddingButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <cal:ActionMessage MethodName="AddPasswordRecord"></cal:ActionMessage>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </Button>
-                        <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource LogInButton}">Close</Button>
-                    </StackPanel>
+                        <!--<Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource LogInButton}">Close</Button>-->
                 </StackPanel>
             </Grid>
         </Border>
@@ -259,6 +267,18 @@
                     </Viewbox>
                 </Button>
 
+                <Ellipse Fill="#FF534A" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Width="15" Height="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseUp">
+                            <cal:ActionMessage MethodName="ToggleRecordPopupVisibility"></cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Ellipse.Effect>
+                        <DropShadowEffect BlurRadius="20" Opacity=".6" Direction="270" ShadowDepth="1"></DropShadowEffect>
+                    </Ellipse.Effect>
+                </Ellipse>
+
+
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding ElementName=MainListView, Path=SelectedItem.ImageUrl}" Width="30" Height="30" Margin="20"></Image>
@@ -266,38 +286,38 @@
                                FontFamily="QuickSand" FontSize="16" Margin="0 30"></TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Title:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaTitle}"></Label>
                         <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Username:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaUsername}"></Label>
                         <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Username}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Email:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaEmail}"></Label>
                         <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Email}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Password:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaPassword}"></Label>
                         <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Password}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Website:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaWebsite}"></Label>
                         <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Website}"></TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
-                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Category:</Label>
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Content="{DynamicResource msaCategory}"></Label>
                         <ComboBox MinWidth="100" SelectedIndex="{Binding ElementName=MainListView, Path=SelectedItem.Category}" Foreground="{DynamicResource ForegroundColor}">
-                            <ComboBoxItem>Mail</ComboBoxItem>
-                            <ComboBoxItem>Shopping</ComboBoxItem>
-                            <ComboBoxItem>Work</ComboBoxItem>
-                            <ComboBoxItem>Entertainment</ComboBoxItem>
-                            <ComboBoxItem>Other</ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mMailButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mShoppingButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mWorkButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mEntertainmentButton}"></ComboBoxItem>
+                            <ComboBoxItem Content="{DynamicResource mOtherButton}"></ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                 </StackPanel>
@@ -315,6 +335,16 @@
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="7*"></RowDefinition>
                 </Grid.RowDefinitions>
+                <Ellipse Fill="#FF534A" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Width="15" Height="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseUp">
+                            <cal:ActionMessage MethodName="ToggleSettingsPopupVisibility"></cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Ellipse.Effect>
+                        <DropShadowEffect BlurRadius="20" Opacity=".6" Direction="270" ShadowDepth="1"></DropShadowEffect>
+                    </Ellipse.Effect>
+                </Ellipse>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="15" VerticalAlignment="Center">
                     <Ellipse Width="40" Height="40" Fill="{DynamicResource ForegroundColor}" Margin="0 0 10 0"></Ellipse>
                     <StackPanel VerticalAlignment="Center">

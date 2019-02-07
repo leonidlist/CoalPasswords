@@ -99,7 +99,7 @@ namespace CoalPasswords
         {
             try
             {
-                string query = $"UPDATE Users SET Language = '{current.Theme}' WHERE UniqueId = {current.Id}";
+                string query = $"UPDATE Users SET Language = '{current.Language}' WHERE UniqueId = {current.Id}";
                 using (SQLiteConnection connection = new SQLiteConnection($"Data Source={DataSource}"))
                 {
                     connection.Open();

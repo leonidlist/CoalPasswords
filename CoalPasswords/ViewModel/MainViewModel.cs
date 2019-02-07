@@ -98,10 +98,10 @@ namespace CoalPasswords
             set
             {
                 _selectedThemeIndex = value;
-                ChangeTheme();
                 CurrentUser.Theme = _selectedThemeIndex.ToString();
                 DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
                 dbc.UpdateUserTheme(CurrentUser);
+                ChangeTheme();
                 NotifyOfPropertyChange(() => SelectedThemeIndex);
             }
         }
@@ -112,10 +112,10 @@ namespace CoalPasswords
             set
             {
                 _selectedLanguageIndex = value;
-                ChangeLanguage();
                 CurrentUser.Language = _selectedLanguageIndex.ToString();
                 DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
                 dbc.UpdateUserLanguage(CurrentUser);
+                ChangeLanguage();
                 NotifyOfPropertyChange(() => SelectedLanguageIndex);
             }
         }
@@ -161,6 +161,7 @@ namespace CoalPasswords
             }
             PassRecords.Add(BufferRecord);
             BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords);
+            ToggleRecordPopupVisibility();
         }
 
         public void UpdatePasswordRecord(IRecord record)
@@ -311,6 +312,7 @@ namespace CoalPasswords
             ToggleRecordPopupVisibility();
             CurrentUser.PasswordRecords.Remove(record as IRecord);
             PassRecords.Remove(record as IRecord);
+            BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords);
             DatabaseConnect databaseConnect = new DatabaseConnect("CoalPasswords.db");
             databaseConnect.RemoveRecord(record as IRecord, CurrentUser);
         }
