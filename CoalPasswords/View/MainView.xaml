@@ -7,8 +7,10 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cal="http://www.caliburnproject.org"
-        mc:Ignorable="d" Name="mWnd" MinHeight="600" MinWidth="1000" WindowStyle="None" Title="Coal Passwords"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" Name="mWnd" MinHeight="680" MinWidth="1200" WindowStyle="None" Title="Coal Passwords"
         Style="{DynamicResource WindowBaseStyle}" Height="720" Width="1280" AllowsTransparency="True" Background="Transparent"
+        ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen">
     
     <!-- Region ResizeBorder(Chrome) -->
@@ -16,6 +18,7 @@
         <WindowChrome ResizeBorderThickness="{Binding ResizeBorderThickness}" CaptionHeight="{Binding TitleHeight}" CornerRadius="{Binding WindowCornerRadius}"></WindowChrome>
     </WindowChrome.WindowChrome>
     <!-- EndRegion -->
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -38,6 +41,7 @@
                         <RowDefinition Height="8*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" VerticalAlignment="Bottom">
+                        <TextBox Foreground="{DynamicResource ForegroundColor}" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}" MinWidth="60"></TextBox>
                         <Button Background="Transparent" Style="{StaticResource SideMenuButton}"
                                 Content="{DynamicResource mAllPasswordsButton}">
                         </Button>
@@ -87,7 +91,7 @@
                         </Button.Resources>
                         <Viewbox Width="20" Height="20">
                             <Canvas Width="24" Height="24">
-                                <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="{StaticResource ForegroundColor}" />
+                                <Path Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" Fill="{DynamicResource ForegroundColor}" />
                             </Canvas>
                         </Viewbox>
                     </Button>
@@ -98,7 +102,7 @@
         
         <!-- Region PasswordRecordsListView -->
         <Grid Grid.Column="1" x:Name="ItemsCol" Background="Transparent">
-            <ListView SelectedValue="{Binding SelectedPassRecord}" ItemTemplate="{StaticResource ListViewDataTemplate}" ItemsSource="{Binding PassRecords}"
+            <ListView SelectedValue="{Binding SelectedPassRecord}" ItemTemplate="{StaticResource ListViewDataTemplate}" ItemsSource="{Binding BufferSearchRecords}"
                       Name="MainListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Foreground="{DynamicResource ForegroundColor}" Background="Transparent">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -134,94 +138,119 @@
         </Button>
         <!-- EndRegion -->
 
-        <!-- Region PopupWindowAddRecord -->
+        <!-- Region PopupAddRecord -->
         <Border CornerRadius="5" Padding="10" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{DynamicResource BackgroundColor}"
-                Width="400" Height="570" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding AddRecordPopupVisibility}" Name="AddRecordGrid">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="60" Direction="270" Opacity=".3"></DropShadowEffect>
-            </Border.Effect>
-            <StackPanel>
-                <Label Style="{StaticResource FormLabelStyle}">Title</Label>
-                <TextBox Name="titleAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Title}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Label Style="{StaticResource FormLabelStyle}">Username</Label>
-                <TextBox Name="usernameAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Username}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Label Style="{StaticResource FormLabelStyle}">Email</Label>
-                <TextBox Name="emailAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Email}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Label Style="{StaticResource FormLabelStyle}">Password</Label>
-                <TextBox Name="passwordAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Password}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Label Style="{StaticResource FormLabelStyle}">Website</Label>
-                <TextBox Name="websiteAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Website}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Label Style="{StaticResource FormLabelStyle}">Category</Label>
-                <TextBox Name="categoryAdd" Style="{StaticResource FormTextBoxStyle}" Text="{Binding BufferRecord.Category}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"></Setter>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <UniformGrid Columns="2" Rows="1" Margin="5 7">
-                    <Button Style="{StaticResource FormButtonStyle}" Content="Add">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <cal:ActionMessage MethodName="AddPasswordRecord"></cal:ActionMessage>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
-                    <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource FormButtonStyle}">Close</Button>
-                </UniformGrid>
-            </StackPanel>
+                Width="300" Height="460" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding AddRecordPopupVisibility}" Name="AddRecordGrid">
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Title:</Label>
+                        <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Title}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Username:</Label>
+                        <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Username}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Email:</Label>
+                        <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Email}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Password:</Label>
+                        <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Password}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Website:</Label>
+                        <TextBox MinWidth="100" FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15" Text="{Binding BufferRecord.Website}"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="{DynamicResource ForegroundColor}" Margin="15">Category:</Label>
+                        <ComboBox MinWidth="100" SelectedIndex="{Binding SelectedCategoryIndex}">
+                            <ComboBoxItem>Mail</ComboBoxItem>
+                            <ComboBoxItem>Shopping</ComboBoxItem>
+                            <ComboBoxItem>Work</ComboBoxItem>
+                            <ComboBoxItem>Entertainment</ComboBoxItem>
+                            <ComboBoxItem>Other</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource LogInButton}" Content="Add">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="AddPasswordRecord"></cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Command="{Binding ClosePopupAddRecordCommand}" Style="{StaticResource LogInButton}">Close</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Border>
         <!-- EndRegion -->
         
-        <!-- Region PopupWindowShowRecord -->
-        <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{DynamicResource BackgroundColor}"
-                Width="600" Height="600" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding RecordPopupVisibility}" Name="ShowRecord">
-            <StackPanel>
-                <Label>Title</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
-                <Label>Username</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Username}"></TextBox>
-                <Label>Email</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Email}"></TextBox>
-                <Label>Password</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Password}"></TextBox>
-                <Label>Website</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Website}"></TextBox>
-                <Label>Category</Label>
-                <TextBox Text="{Binding ElementName=MainListView, Path=SelectedItem.Category}"></TextBox>
-                <Button Command="{Binding AddPasswordRecordCommand}">Add</Button>
-                <Button Command="{Binding ClosePopupShowRecordCommand}">Close</Button>
-            </StackPanel>
+        <!-- Region PopupShowRecord -->
+        <Border CornerRadius="5" Padding="20" Grid.RowSpan="3" Grid.ColumnSpan="2" Background="{Binding ElementName=MainListView, Path=SelectedItem.CardColor.BackgroundColor}"
+                Width="300" Height="450" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding RecordPopupVisibility}" Name="ShowRecord">
+            <Grid>
+                <Button VerticalAlignment="Top" HorizontalAlignment="Right"
+                        Margin="20 25 0 0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="DeleteRecord">
+                                <cal:Parameter Value="{Binding ElementName=MainListView, Path=SelectedItem}"></cal:Parameter>   
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Viewbox Width="24" Height="24">
+                        <Canvas Width="24" Height="24">
+                            <Path Data="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" Fill="White" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding ElementName=MainListView, Path=SelectedItem.ImageUrl}" Width="30" Height="30" Margin="20"></Image>
+                        <TextBlock Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}" Foreground="#FFFFFF"
+                               FontFamily="QuickSand" FontSize="16" Margin="0 30"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Title:</Label>
+                        <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Title}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Username:</Label>
+                        <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Username}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Email:</Label>
+                        <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Email}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Password:</Label>
+                        <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Password}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Website:</Label>
+                        <TextBox MinWidth="40" FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15" Text="{Binding ElementName=MainListView, Path=SelectedItem.Website}"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontFamily="QuickSand" FontSize="14" Foreground="#FFFFFF" Margin="15">Category:</Label>
+                        <ComboBox MinWidth="100" SelectedIndex="{Binding ElementName=MainListView, Path=SelectedItem.Category}" Foreground="{DynamicResource ForegroundColor}">
+                            <ComboBoxItem>Mail</ComboBoxItem>
+                            <ComboBoxItem>Shopping</ComboBoxItem>
+                            <ComboBoxItem>Work</ComboBoxItem>
+                            <ComboBoxItem>Entertainment</ComboBoxItem>
+                            <ComboBoxItem>Other</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Border>
         <!-- EndRegion -->
 

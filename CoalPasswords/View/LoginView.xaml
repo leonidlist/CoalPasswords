@@ -15,11 +15,8 @@
         ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Style="{DynamicResource LoginBaseStyle}" >
 
     <i:Interaction.Triggers>
-        <!--<i:EventTrigger EventName="Closing">
-            <cal:ActionMessage MethodName=""
-        </i:EventTrigger>-->
         <i:EventTrigger EventName="Loaded">
-            <cal:ActionMessage MethodName="Deserialize"></cal:ActionMessage>
+            <cal:ActionMessage MethodName="LoadDbData"></cal:ActionMessage>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

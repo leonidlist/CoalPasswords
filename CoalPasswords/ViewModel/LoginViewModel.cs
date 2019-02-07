@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using Caliburn.Micro;
 
@@ -42,9 +41,17 @@ namespace CoalPasswords
                     EnteredPassword = pass.Password;
                     if (!String.IsNullOrEmpty(EnteredPassword))
                     {
-                        UsersRepository.Add(new User(EnteredLogin, EnteredPassword));
+                        Random rnd = new Random();
                         DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
-                        dbc.AddUser("Steve", "Jobs", EnteredLogin, EnteredPassword);
+                        User tmp = new User(rnd.Next(100000, 1000000), EnteredLogin, EnteredPassword);
+                        tmp.Image = "Noimage";
+                        tmp.Language = "0";
+                        tmp.Theme = "0";
+                        while (!dbc.AddUser(tmp))
+                        {
+                            tmp.Id = rnd.Next(100000, 1000000);
+                        }
+                        UsersRepository.Add(tmp);
                         EnteringStatusString = "Succesfully signed up.";
                         return;
                     }
@@ -80,7 +87,7 @@ namespace CoalPasswords
             lang.Source = new Uri($"pack://application:,,,/Languages/{language}.xaml", UriKind.Absolute);
             Application.Current.Resources.MergedDictionaries.Add(lang);
         }
-        public void Deserialize()
+        public void LoadDbData()
         {
             SetLanguageOnStartup("English");
             SetThemeOnStartup("LightColors");

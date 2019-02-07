@@ -5,7 +5,7 @@
         <GradientStop Color="#f3e7e9" Offset="0.2"></GradientStop>
         <GradientStop Color="#e3eeff" Offset="0.7"></GradientStop>
     </LinearGradientBrush>
-    <SolidColorBrush x:Key="AccentColor">#FFCE49</SolidColorBrush>
-    <SolidColorBrush x:Key="ForegroundColor">#4A515F</SolidColorBrush>
+    <SolidColorBrush x:Key="AccentColor">#927AC3</SolidColorBrush>
+    <SolidColorBrush x:Key="ForegroundColor">#212A37</SolidColorBrush>
     <SolidColorBrush x:Key="BackgroundColor">#FFFFFF</SolidColorBrush>
 </ResourceDictionary>

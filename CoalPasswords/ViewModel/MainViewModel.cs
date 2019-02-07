@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,7 +20,9 @@ namespace CoalPasswords
         #region Private members
         private int _selectedThemeIndex = 0;
         private int _selectedLanguageIndex = 0;
+        private string _searchString = String.Empty;
         private User _currentUser;
+        private ObservableCollection<IRecord> _bufferSearchRecords;
         private ObservableCollection<IRecord> _passRecords;
         private Visibility _recordPopupVisibility = Visibility.Hidden;
         private Visibility _addRecordPopupVisibility = Visibility.Hidden;
@@ -60,11 +63,23 @@ namespace CoalPasswords
         }
         public ObservableCollection<IRecord> PassRecords
         {
-            get => _passRecords;
+            get
+            {
+                return _passRecords;
+            }
             set
             {
                 _passRecords = value;
                 NotifyOfPropertyChange(() => PassRecords);
+            }
+        }
+        public ObservableCollection<IRecord> BufferSearchRecords
+        {
+            get => _bufferSearchRecords;
+            set
+            {
+                _bufferSearchRecords = value;
+                NotifyOfPropertyChange(() => BufferSearchRecords);
             }
         }
         public User CurrentUser
@@ -84,6 +99,9 @@ namespace CoalPasswords
             {
                 _selectedThemeIndex = value;
                 ChangeTheme();
+                CurrentUser.Theme = _selectedThemeIndex.ToString();
+                DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
+                dbc.UpdateUserTheme(CurrentUser);
                 NotifyOfPropertyChange(() => SelectedThemeIndex);
             }
         }
@@ -95,7 +113,26 @@ namespace CoalPasswords
             {
                 _selectedLanguageIndex = value;
                 ChangeLanguage();
+                CurrentUser.Language = _selectedLanguageIndex.ToString();
+                DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
+                dbc.UpdateUserLanguage(CurrentUser);
                 NotifyOfPropertyChange(() => SelectedLanguageIndex);
+            }
+        }
+
+        public int SelectedCategoryIndex
+        {
+            get; set;
+        }
+
+        public string SearchString
+        {
+            get => _searchString;
+            set
+            {
+                _searchString = value;
+                BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords.Where(x => x.Title.Contains(SearchString)));
+                NotifyOfPropertyChange(() => SearchString);
             }
         }
         #endregion
@@ -104,7 +141,10 @@ namespace CoalPasswords
         {
             CurrentUser = currentUser;
             PassRecords = new ObservableCollection<IRecord>(_currentUser.PasswordRecords.GetAll());
+            BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords);
             BufferRecord = new PasswordRecord();
+            SelectedLanguageIndex = Convert.ToInt32(CurrentUser.Language);
+            SelectedThemeIndex = Convert.ToInt32(CurrentUser.Theme);
         }
 
         public void AddPasswordRecord()
@@ -112,10 +152,21 @@ namespace CoalPasswords
             Random rnd = new Random();
             BufferRecord.ImageUrl = GetImageUrl(BufferRecord.Website);
             BufferRecord.CardColor = Pallete.Colors[rnd.Next(Pallete.Colors.Count)];
-            PassRecords.Add(BufferRecord);
-            
+            BufferRecord.Category = SelectedCategoryIndex;
+            BufferRecord.UniqueId = rnd.Next(100000, 1000000);
             DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
-            dbc.AddPasswordRecord(BufferRecord, CurrentUser);
+            while(!dbc.AddPasswordRecord(BufferRecord, CurrentUser))
+            {
+                BufferRecord.UniqueId = rnd.Next(100000, 1000000);
+            }
+            PassRecords.Add(BufferRecord);
+            BufferSearchRecords = new ObservableCollection<IRecord>(PassRecords);
+        }
+
+        public void UpdatePasswordRecord(IRecord record)
+        {
+            DatabaseConnect dbc = new DatabaseConnect("CoalPasswords.db");
+            dbc.UpdatePasswordRecord(record);
         }
 
         public void ToggleSettingsPopupVisibility()
@@ -131,7 +182,10 @@ namespace CoalPasswords
             if (RecordPopupVisibility == Visibility.Hidden)
                 RecordPopupVisibility = Visibility.Visible;
             else
+            {
                 RecordPopupVisibility = Visibility.Hidden;
+                UpdatePasswordRecord(SelectedPassRecord);
+            }
         }
 
         public void ToggleAddRecordVisibility()
@@ -139,7 +193,9 @@ namespace CoalPasswords
             if (AddRecordPopupVisibility == Visibility.Hidden)
                 AddRecordPopupVisibility = Visibility.Visible;
             else
+            {
                 AddRecordPopupVisibility = Visibility.Hidden;
+            }
         }
 
         private string GetImageUrl(string url)
@@ -208,7 +264,7 @@ namespace CoalPasswords
             while (true)
             {
                 string themeName;
-                if (DateTime.Now.Hour > 20 || DateTime.Now.Hour < 6)
+                if (DateTime.Now.Hour >= 20 || DateTime.Now.Hour < 6)
                     themeName = "Dark";
                 else
                     themeName = "Light";
@@ -237,6 +293,15 @@ namespace CoalPasswords
             lang.Source = new Uri($"pack://application:,,,/Languages/{language}.xaml", UriKind.Absolute);
             Application.Current.Resources.MergedDictionaries.Insert(Application.Current.Resources.MergedDictionaries.Count - 3, lang);
             Application.Current.Resources.MergedDictionaries.RemoveAt(Application.Current.Resources.MergedDictionaries.Count - 3);
+        }
+
+        public void DeleteRecord(object record)
+        {
+            ToggleRecordPopupVisibility();
+            CurrentUser.PasswordRecords.Remove(record as IRecord);
+            PassRecords.Remove(record as IRecord);
+            DatabaseConnect databaseConnect = new DatabaseConnect("CoalPasswords.db");
+            databaseConnect.RemoveRecord(record as IRecord, CurrentUser);
         }
     }
 }
